@@ -12,3 +12,24 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Users{
+  id String @id @default(uuid())
+  firstName String
+  lastName String
+  email String @unique
+  password String
+  isAdmin Boolean @default (false)
+  cart Products[]
+}
+
+
+model Products {
+  id String @id @default(uuid())
+  productName String
+  image String
+  price String
+  publish Boolean @default (true)
+  cart Users @relation(fields: [usersId], references: [id])
+  usersId  String
+}
