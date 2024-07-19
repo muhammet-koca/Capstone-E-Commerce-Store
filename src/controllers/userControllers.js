@@ -9,8 +9,10 @@ const {
   getProduct,
   addProductId,
   deleteProduct,
-  updateProduct,
-} = require("../queries/userQuery");
+  addToCart,
+  adminUpdateProduct,
+  emptyCart,
+} = require("../queries/userQueries");
 const { bcrypt } = require("../share");
 const { jwt } = require("../share");
 
@@ -28,7 +30,7 @@ const login = async (req, res) => {
 const getUsers = async (req, res) => {
   try {
     const users = await getAllUsers();
-    res.status(200).json(users);
+    return res.status(200).json(users);
   } catch (error) {
     res.status(500).send("error");
   }
@@ -79,6 +81,7 @@ const getUserById = async (req, res) => {
 };
 
 //get all products
+
 const getProducts = async (req, res) => {
   try {
     const products = await getAllProducts();
@@ -87,7 +90,9 @@ const getProducts = async (req, res) => {
     res.status(500).send("error");
   }
 };
+
 //get single product
+
 const getProductById = async (req, res) => {
   try {
     const product = await getProduct(req.params.id);
@@ -99,13 +104,14 @@ const getProductById = async (req, res) => {
     res.status(500).send("single product error");
   }
 };
+
 //add new products
 const addProduct = async (req, res) => {
   const product = await addProductId(req.body);
   res.send(product);
 };
 //delete products
-const deleteProduct = async (req, res) => {
+const deleteProductById = async (req, res) => {
   try {
     const product = await deleteProduct(req.params.id);
     if (!product) {
@@ -117,15 +123,27 @@ const deleteProduct = async (req, res) => {
   }
 };
 //update products
+const addToCartById = async (req, res) => {
+  try {
+    const product = await addToCart(req.params.id, req.body.usersId);
+    if (!product) {
+      return res.status(404).send("not found");
+    }
+    console.log(product);
+    res.send(product);
+  } catch (error) {
+    res.status(500).send("update product error");
+  }
+};
+
 const updateProduct = async (req, res) => {
   try {
-    const product = await updateProduct(
+    const product = await adminUpdateProduct(
       req.params.id,
       req.body.productName,
       req.body.image,
       req.body.price,
-      req.body.publish,
-      req.body.usersId
+      req.body.publish
     );
     if (!product) {
       return res.status(404).send("not found");
@@ -134,6 +152,19 @@ const updateProduct = async (req, res) => {
     res.send(product);
   } catch (error) {
     res.status(500).send("update product error");
+  }
+};
+
+const emptyCartById = async (req, res) => {
+  try {
+    const cart = await emptyCart(req.params.id, req.body.cart);
+    console.log(cart, "testcart");
+    if (!cart) {
+      return res.status(404).send("cart empty");
+    }
+    res.send(cart);
+  } catch (error) {
+    res.status(500).send("cart error");
   }
 };
 
@@ -147,6 +178,8 @@ module.exports = {
   getProducts,
   getProductById,
   addProduct,
-  deleteProduct,
+  deleteProductById,
   updateProduct,
+  addToCartById,
+  emptyCartById,
 };

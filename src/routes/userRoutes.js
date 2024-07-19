@@ -9,35 +9,34 @@ const {
   getProducts,
   getProductById,
   addProduct,
-  deleteProduct,
+  deleteProductById,
   updateProduct,
+  addToCartById,
+  emptyCartById,
 } = require("../controllers/userControllers");
-const authenticateToken = require("../middleware/authMiddleware");
+const { authenticateToken, isAdmin } = require("../middleware/authMiddleware");
 
-route.get("/", getProducts); //display all product
+route.get("/", getProducts); //display all product tested
 
-route.post("/register", register);
-route.post("/login", login);
-route.get("/:id", getProductById); //get individual product(id) details
+route.post("/register", register); //tested
+route.post("/login", login); //tested
+route.get("/product/:id", getProductById); //get individual product(id) details tested
 
 //get cart
-//can we get one piece of information? can we get just cart product array from user?
-route.get("/user/:id/cart", authenticateToken, getUserById);
-route.delete("/user/:id", authenticateToken, deleteUser); //only delete self
-route.put("/user/:id", authenticateToken, updateUser); //only update self
+route.get("/user/:id", authenticateToken, getUserById); //only get account details tested
+route.delete("/user/:id", authenticateToken, deleteUser); //only delete self tested
+route.put("/user/:id", authenticateToken, updateUser); //only update self tested
 
-//update cart
-route.put("/:id", authenticateToken, updateProduct);
-
-//checkout cart (empty cart)
-//should we be doing delete or update? or is it frontend only?
+//Add to cart
+route.put("/cart/:id", authenticateToken, addToCartById); //tested
+route.put("/checkout", authenticateToken, emptyCartById); //checkout cart (empty cart)
 
 //admin only- add product, update, delete
-route.post("/product", authenticateToken, addProduct);
-route.put("/product/:id", authenticateToken, updateProduct);
-route.delete("/product/:id", authenticateToken, deleteProduct);
+route.post("/product", authenticateToken, addProduct); //tested
+route.put("/product/:id", authenticateToken, updateProduct); //tested
+route.delete("/product/:id", authenticateToken, deleteProductById); //tested
 //admin only get all users and get user by ID
-route.get("/users/:id", authenticateToken, getUserById);
-route.get("/users", authenticateToken, getUsers);
+route.get("/users/:id", authenticateToken, getUserById); //tested
+route.get("/users", authenticateToken, getUsers); //tested
 
 module.exports = route;
