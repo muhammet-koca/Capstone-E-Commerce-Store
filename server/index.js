@@ -13,4 +13,4 @@ app.get("/", (req, res) => {
 });
 
 const userRoutes = require("../src/routes/userRoutes");
-app.use("/api/user", userRoutes);
+app.use("/store", userRoutes);
