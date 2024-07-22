@@ -2,7 +2,6 @@ const {
   addToCart,
   emptyCart,
   updateCartItems,
-  updateCart,
   createCart,
   createCartItems,
   getCart,
@@ -37,8 +36,6 @@ const getCartById = async (req, res) => {
     if (!cart) {
       return res.status(404).send("not found");
     }
-    // console.log(cartItems);
-    // console.log(cartItem);
     res.status(200).json(cart);
   } catch (error) {
     console.log(error);
@@ -77,23 +74,6 @@ const updateItemQuantity = async (req, res) => {
   }
 };
 
-const updateCartById = async (req, res) => {
-  try {
-    const cart = await updateCart(
-      req.params.id,
-      req.body.cartItems,
-      req.body.usersId
-    );
-    if (!cart) {
-      return res.status(404).send("not found");
-    }
-    console.log(cart);
-    res.send(cart);
-  } catch (error) {
-    res.status(500).send("update cart error");
-  }
-};
-
 const emptyCartById = async (req, res) => {
   try {
     const cart = await emptyCart(
@@ -115,7 +95,6 @@ module.exports = {
   addToCartById,
   emptyCartById,
   updateItemQuantity,
-  updateCartById,
   createCartById,
   createCartItemsById,
   getCartById,
