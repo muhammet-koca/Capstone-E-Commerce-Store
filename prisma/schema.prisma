@@ -30,19 +30,21 @@ model Products {
   image String
   price String
   publish Boolean @default (true)
-  
+  cartItems CartItems[]
 }
 
 model Cart {
   id String @id @default(uuid())
   cartItems CartItems[]
-  userId String @relation(fields: [productId], references: [id])
+  users Users @relation(fields: [usersId], references: [id])
+  usersId String @unique
 }
 
 model CartItems {
   id String @id @default(uuid())
-  productId String @relation(fields: [productId], references: [id])
+  products  Products @relation(fields: [productsId], references: [id])
+  productsId String @unique
   quantity Int
-  cartId String @db.ObjectId
+  cartId String
   cart Cart @relation(fields: [cartId], references: [id])
 }
