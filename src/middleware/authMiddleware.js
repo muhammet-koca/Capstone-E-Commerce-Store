@@ -13,8 +13,9 @@ const authenticateToken = (req, res, next) => {
   });
 };
 
-const isAdmin = async () => {
-  if (isAdmin === false) return res.sendStatus(401);
+const isAdmin = async (req, res, next) => {
+  const user = req.body.isAdmin;
+  if (user === false) return res.sendStatus(401);
 };
 
 module.exports = { authenticateToken, isAdmin };

@@ -12,6 +12,8 @@ const {
   addToCart,
   adminUpdateProduct,
   emptyCart,
+  updateCartItems,
+  updateCart,
 } = require("../queries/userQueries");
 const { bcrypt } = require("../share");
 const { jwt } = require("../share");
@@ -157,7 +159,11 @@ const updateProduct = async (req, res) => {
 
 const emptyCartById = async (req, res) => {
   try {
-    const cart = await emptyCart(req.params.id, req.body.cart);
+    const cart = await emptyCart(
+      req.params.id,
+      req.body.cartItems,
+      req.body.usersId
+    );
     console.log(cart, "testcart");
     if (!cart) {
       return res.status(404).send("cart empty");
@@ -168,6 +174,39 @@ const emptyCartById = async (req, res) => {
   }
 };
 
+const updateItemQuantity = async (req, res) => {
+  try {
+    const product = await updateCartItems(
+      req.params.id,
+      req.body.productsId,
+      req.body.cartId
+    );
+    if (!product) {
+      return res.status(404).send("not found");
+    }
+    console.log(product);
+    res.send(product);
+  } catch (error) {
+    res.status(500).send("update cartItems error");
+  }
+};
+
+const updateCartById = async (req, res) => {
+  try {
+    const cart = await updateCart(
+      req.params.id,
+      req.body.cartItems,
+      req.body.usersId
+    );
+    if (!cart) {
+      return res.status(404).send("not found");
+    }
+    console.log(cart);
+    res.send(cart);
+  } catch (error) {
+    res.status(500).send("update cart error");
+  }
+};
 module.exports = {
   register,
   login,
@@ -182,4 +221,6 @@ module.exports = {
   updateProduct,
   addToCartById,
   emptyCartById,
+  updateItemQuantity,
+  updateCartById,
 };

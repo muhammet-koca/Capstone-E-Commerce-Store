@@ -13,6 +13,8 @@ const {
   updateProduct,
   addToCartById,
   emptyCartById,
+  updateItemQuantity,
+  updateCartById,
 } = require("../controllers/userControllers");
 const { authenticateToken, isAdmin } = require("../middleware/authMiddleware");
 
@@ -22,11 +24,9 @@ route.post("/register", register); //tested
 route.post("/login", login); //tested
 route.get("/product/:id", getProductById); //get individual product(id) details tested
 
-//rerun prisma migrate
-//add item to cart (update cart)
-//update cartItems
-//set cart to null (item quantity zero?)
-//fix isAdmin
+route.put("/product/user/:id", authenticateToken, updateItemQuantity); //add item to cart (update cart)
+route.put("/cart/update/user/:id", authenticateToken, updateCartById); //update cartItems
+
 //retest all routes
 //deploy backend
 
@@ -39,11 +39,11 @@ route.put("/cart/:id", authenticateToken, addToCartById); //tested
 route.put("/checkout", authenticateToken, emptyCartById); //checkout cart (empty cart)
 
 //admin only- add product, update, delete
-route.post("/product", authenticateToken, addProduct); //tested
-route.put("/product/:id", authenticateToken, updateProduct); //tested
-route.delete("/product/:id", authenticateToken, deleteProductById); //tested
+route.post("/product", authenticateToken, isAdmin, addProduct); //tested
+route.put("/product/:id", authenticateToken, isAdmin, updateProduct); //tested
+route.delete("/product/:id", authenticateToken, isAdmin, deleteProductById); //tested
 //admin only get all users and get user by ID
-route.get("/users/:id", authenticateToken, getUserById); //tested
-route.get("/users", authenticateToken, getUsers); //tested
+route.get("/users/:id", authenticateToken, isAdmin, getUserById); //tested
+route.get("/users", authenticateToken, isAdmin, getUsers); //tested
 
 module.exports = route;

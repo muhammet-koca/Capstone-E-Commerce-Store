@@ -157,20 +157,20 @@ const adminUpdateProduct = async (id, productName, image, price, publish) => {
   });
 };
 
-const emptyCart = async (id) => {
-  try {
-    return await prisma.users.update({
-      where: { id },
-      // data: { users: { connect: { usersId: [] } } },
-      data: {
-        cart: null,
-      },
-    });
-  } catch (error) {
-    console.log("error");
-    throw error;
-  }
-};
+// const emptyCart = async (id) => {
+//   try {
+//     return await prisma.users.update({
+//       where: { id },
+//       // data: { users: { connect: { usersId: [] } } },
+//       data: {
+//         cart: null,
+//       },
+//     });
+//   } catch (error) {
+//     console.log("error");
+//     throw error;
+//   }
+// };
 
 // const emptyCart = async (id, usersId) => {
 //   return await prisma.products.update({
@@ -180,6 +180,38 @@ const emptyCart = async (id) => {
 //     },
 //   });
 // };
+
+//UPDATE cartItems
+const updateCartItems = async (id, productsId, quantity, cartId) => {
+  return await prisma.cartItems.update({
+    where: { id },
+    data: {
+      productsId,
+      quantity,
+      cartId,
+    },
+  });
+};
+//UPDATE cart
+const updateCart = async (id, cartItems, usersId) => {
+  return await prisma.cart.update({
+    where: { id },
+    data: {
+      cartItems,
+      usersId,
+    },
+  });
+};
+//UPDATE cart to null
+const emptyCart = async (id, cartItems, usersId) => {
+  return await prisma.cart.update({
+    where: { id },
+    data: {
+      cartItems: null,
+      usersId,
+    },
+  });
+};
 
 module.exports = {
   registerQuery,
@@ -195,4 +227,6 @@ module.exports = {
   addToCart,
   adminUpdateProduct,
   emptyCart,
+  updateCartItems,
+  updateCart,
 };
