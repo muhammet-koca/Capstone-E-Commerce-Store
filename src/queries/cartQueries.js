@@ -33,11 +33,10 @@ const addToCart = async (id, usersId) => {
 //   });
 // };
 
-const createCart = async (id, usersId, cartItems) => {
+const createCart = async (usersId) => {
   return await prisma.cart.create({
     data: {
       usersId,
-      cartItems,
     },
   });
 };

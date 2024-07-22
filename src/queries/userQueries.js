@@ -22,6 +22,7 @@ const registerQuery = async ({
   const token = jwt.sign(
     {
       id: registerUser.id,
+      isAdmin: registerUser.isAdmin,
     },
     process.env.WEB_TOKEN,
     {
@@ -51,6 +52,7 @@ const loginUser = async (email, password) => {
   const token = jwt.sign(
     {
       id: user.id,
+      isAdmin: user.isAdmin,
     },
     process.env.WEB_TOKEN
   );

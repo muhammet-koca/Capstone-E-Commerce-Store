@@ -14,8 +14,11 @@ const authenticateToken = (req, res, next) => {
 };
 
 const isAdmin = async (req, res, next) => {
-  const user = req.body.isAdmin;
-  if (user === false) return res.sendStatus(401);
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split(" ")[1];
+  const user = jwt.verify(token, process.env.WEB_TOKEN);
+  if (user.isAdmin === false) return res.sendStatus(401);
+  next();
 };
 
 module.exports = { authenticateToken, isAdmin };

@@ -48,11 +48,11 @@ route.put("/cart/:id", authenticateToken, addToCartById); //tested
 route.put("/checkout", authenticateToken, emptyCartById); //checkout cart (empty cart)
 
 //admin only- add product, update, delete
-route.post("/product", authenticateToken, addProduct); //tested
-route.put("/product/:id", authenticateToken, updateProduct); //tested
-route.delete("/product/:id", authenticateToken, deleteProductById); //tested
+route.post("/product", authenticateToken, isAdmin, addProduct); //tested
+route.put("/product/:id", authenticateToken,isAdmin, updateProduct); //tested
+route.delete("/product/:id", authenticateToken,isAdmin, deleteProductById); //tested
 //admin only get all users and get user by ID
-route.get("/users/:id", authenticateToken, getUserById); //tested
-route.get("/users", authenticateToken, getUsers); //tested
+route.get("/users/:id", authenticateToken,isAdmin, getUserById); //tested
+route.get("/users", authenticateToken,isAdmin, getUsers); //tested
 
 module.exports = route;
