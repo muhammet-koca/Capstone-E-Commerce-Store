@@ -6,7 +6,6 @@ import loginReducer from "../components/login/loginSlice";
 const store = configureStore({
   reducer: {
     [api.reducerPath]: api.reducer,
-    //verify names
     register: registerReducer,
     login: loginReducer,
   },
