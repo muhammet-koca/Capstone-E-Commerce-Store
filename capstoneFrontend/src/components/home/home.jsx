@@ -4,16 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 export default function Home() {
-  const [products, getProduct] = useState([]);
-  const { data, isSuccess, isLoading } = useGetProductQuery();
-
-  //   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (isSuccess) {
-      getProduct(data);
-    }
-  }, [data, isSuccess]);
+  const { data: products = [], isSuccess, isLoading } = useGetProductQuery();
 
   if (isLoading) {
     return (
@@ -26,15 +17,13 @@ export default function Home() {
   return (
     <div>
       {isSuccess &&
-        products.map((product) => {
-          return (
-            <div className="product" key={product.id}>
-              <p>
-                <Link to={`/product/${product.id}`}>{product.productName}</Link>
-              </p>
-            </div>
-          );
-        })}
+        products.map((product) => (
+          <div className="product" key={product.id}>
+            <p>
+              <Link to={`/product/${product.id}`}>{product.productName}</Link>
+            </p>
+          </div>
+        ))}
     </div>
   );
 }
@@ -52,23 +41,3 @@ export default function Home() {
 //       console.log("Delete error");
 //     }
 //   };
-
-//   return (
-//     <p key={product.id}>
-//       {product.productName}{" "}
-//       <button
-//         onClick={(event) => handleDelete(event, user.id, user.email)}
-//         className="btn btn-danger"
-//       >
-//         Delete
-//       </button>
-//       <button
-//         onClick={() => navigate(`/update/${user.id}`)}
-//         className="btn btn-danger"
-//       >
-//         Update
-//       </button>
-//     </p>
-//   );
-
-// {products.map((product) => {

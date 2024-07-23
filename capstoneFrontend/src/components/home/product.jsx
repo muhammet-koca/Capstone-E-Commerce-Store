@@ -5,25 +5,25 @@ import { api } from "../../app/api";
 
 const SingleProduct = () => {
   const { id } = useParams();
-  const [singleProduct, setSingleProduct] = useState({});
-  //   const navigate = useNavigate();
-  const getProductById = useGetProductByIdQuery({ id });
+  const {
+    data: singleProduct,
+    isSuccess,
+    isLoading,
+  } = useGetProductByIdQuery(id);
 
-  // const [checkoutBook] = useCheckoutBookMutation();
+  if (isLoading) {
+    return (
+      <div className="loading">
+        <h2>Loading...</h2>
+      </div>
+    );
+  }
 
-  const getSingleProduct = async (id) => {
-    try {
-      getProductById(id);
-      setSingleProduct();
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  if (!isSuccess || !singleProduct) {
+    return <div>Product not found</div>;
+  }
 
-  useEffect(() => {
-    getSingleProduct();
-  }, []);
-
+  // turn into add to cart function
   // const handleCheckout = async () => {
   //   try {
   //     await checkoutBook(id);

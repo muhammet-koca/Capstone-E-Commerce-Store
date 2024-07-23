@@ -3,11 +3,10 @@ import Protected from "./components/home/protected";
 // import UpdateUser from "./components/features/update";
 import SingleProduct from "./components/home/product";
 import Home from "./components/home/home";
-import Registration from "./components/register/register";
+import Register from "./components/register/register";
 import { useState } from "react";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Register from "./components/register/register";
 
 //update routes for current site
 
