@@ -1,7 +1,8 @@
 import Login from "./components/login/login";
 import Protected from "./components/home/protected";
 // import UpdateUser from "./components/features/update";
-// import Home from "./components/home/home";
+import SingleProduct from "./components/home/product";
+import Home from "./components/home/home";
 import Registration from "./components/register/register";
 import { useState } from "react";
 
@@ -16,6 +17,8 @@ function App() {
     <>
       <Router>
         <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/product/:id" element={<SingleProduct />} />
           <Route path="/login" element={<Login setEmail={setEmail} />} />
           <Route path="/register" element={<Register setEmail={setEmail} />} />
           {/* <Route element={<Protected />}>

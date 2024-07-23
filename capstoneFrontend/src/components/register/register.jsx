@@ -25,13 +25,13 @@ export default function Register({ setEmail }) {
     try {
       let success = false;
       success = await registerUser(form).unwrap();
-      //   const successJson = JSON.parse(success);
+      // const successJson = JSON.parse(success);
       console.log("test:", success);
-      //   if (success) {
-      //     setEmail(successJson.token.email);
-      // navigate("/home");
+      // if (success) {
+      //   setEmail(successJson.token.email);
+      //   navigate("/home");
       //   console.log(successJson.token.email);
-      //   }
+      // }
     } catch (error) {
       console.log(error, "hello");
     }
