@@ -24,7 +24,7 @@ const Login = ({ setEmail }) => {
       const successJson = JSON.parse(success);
       if (success) {
         setEmail(successJson.token.email);
-        navigate(`/home`);
+        navigate(`/`);
       }
     } catch (error) {
       // add error handling for future

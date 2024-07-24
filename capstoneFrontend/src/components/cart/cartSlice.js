@@ -1,26 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { api } from "../../app/api";
 
-// const token = useSelector((state) => state.register.token || state.login.token);
-// const sessionToken = window.sessionStorage.getItem("Token");
-
-// getProductById: builder.query({
-//     query: (id) => `/store/product/${id}`,
-
-// get user
-const userApi = api.injectEndpoints({
+const getCartApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    getUser: builder.query({
+    getCart: builder.query({
       query: ({ id }) => ({
-        url: `/store/user/${id}`,
+        url: `/store/getcart/${id}`,
       }),
       providesTags: ["User"],
     }),
 
     // delete user
-    deleteUser: builder.mutation({
+    deleteCart: builder.mutation({
       query: ({ id }) => ({
-        url: `/store/user/${id}`,
+        url: `/store/checkout/${id}`,
         method: "DELETE",
         responseHandler: (response) => response.text(),
       }),
@@ -28,15 +21,13 @@ const userApi = api.injectEndpoints({
     }),
 
     // update user
-    updateUser: builder.mutation({
+    updateCart: builder.mutation({
       query: ({ id, form }) => ({
-        url: `/store/user/${id}`,
+        url: `/store/product/cartitem/${id}`,
         method: "PUT",
         body: {
-          firstName: form.firstName,
-          lastName: form.lastName,
-          email: form.email,
-          password: form.password,
+          product: form.product,
+          quantity: form.quantity,
         },
         responseHandler: (response) => response.text(),
       }),
@@ -45,8 +36,8 @@ const userApi = api.injectEndpoints({
   }),
 });
 
-const userSlice = createSlice({
-  name: "users",
+const cartSlice = createSlice({
+  name: "cart",
   initialState: {},
   reducers: {},
   extraReducers: (builder) => {
@@ -59,7 +50,7 @@ const userSlice = createSlice({
   },
 });
 
-export default userSlice.reducer;
+export default cartSlice.reducer;
 
-export const { useGetUserQuery, useDeleteUserMutation, useUpdateUserMutation } =
-  userApi;
+export const { useGetCartQuery, useDeleteCartMutation, useUpdateCartMutation } =
+  getCartApi;

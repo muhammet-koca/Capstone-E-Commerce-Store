@@ -1,6 +1,6 @@
 import Login from "./components/login/login";
 import Protected from "./components/home/protected";
-// import UpdateUser from "./components/features/update";
+import Update from "./components/features/update";
 import SingleProduct from "./components/home/product";
 import Home from "./components/home/home";
 import Register from "./components/register/register";
@@ -20,10 +20,11 @@ function App() {
           <Route path="/product/:id" element={<SingleProduct />} />
           <Route path="/login" element={<Login setEmail={setEmail} />} />
           <Route path="/register" element={<Register setEmail={setEmail} />} />
-          {/* <Route element={<Protected />}>
-            <Route path="/home" element={<Home email={email} />} />
-            <Route path="/update/:id" element={<UpdateUser />} />
-          </Route> */}
+          {/* <Route path="/update" element={<Update setEmail={setEmail} />} /> */}
+          <Route element={<Protected />}>
+            {/* <Route path="/home" element={<Home email={email} />} /> */}
+            <Route path="/update/:id" element={<Update />} />
+          </Route>
         </Routes>
       </Router>
     </>
