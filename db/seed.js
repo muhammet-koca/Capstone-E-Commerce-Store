@@ -29,7 +29,7 @@ const seed = async () => {
           data: {
             productName: faker.commerce.productName(),
             image: faker.image.urlLoremFlickr({ category: "animals" }),
-            price: faker.commerce.price(),
+            price: parseFloat(faker.commerce.price()),
             publish: faker.datatype.boolean(),
           },
         });

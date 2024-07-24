@@ -15,7 +15,7 @@ CREATE TABLE "Products" (
     "id" TEXT NOT NULL,
     "productName" TEXT NOT NULL,
     "image" TEXT NOT NULL,
-    "price" TEXT NOT NULL,
+    "price" FLOAT NOT NULL,
     "publish" BOOLEAN NOT NULL DEFAULT true,
     "usersId" TEXT NOT NULL,
 

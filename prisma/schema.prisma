@@ -27,7 +27,7 @@ model Products {
   id String @id @default(uuid())
   productName String
   image String
-  price String
+  price Float
   publish Boolean @default (true)
   cartItems CartItems[]
 }
