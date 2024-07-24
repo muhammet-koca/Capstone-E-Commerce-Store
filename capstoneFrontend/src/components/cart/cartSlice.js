@@ -33,6 +33,16 @@ const getCartApi = api.injectEndpoints({
       }),
       invalidatesTags: ["User"],
     }),
+
+    createCart: builder.mutation({
+      query: (credentials) => ({
+        url: "/store/cart",
+        method: "POST",
+        body: credentials,
+        responseHandler: (response) => response.text(),
+      }),
+      invalidateTags: ["User"],
+    }),
   }),
 });
 
@@ -52,5 +62,5 @@ const cartSlice = createSlice({
 
 export default cartSlice.reducer;
 
-export const { useGetCartQuery, useDeleteCartMutation, useUpdateCartMutation } =
+export const { useGetCartQuery, useDeleteCartMutation, useUpdateCartMutation, useCreateCartMutation } =
   getCartApi;

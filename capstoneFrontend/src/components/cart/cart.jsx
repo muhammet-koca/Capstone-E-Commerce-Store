@@ -1,10 +1,11 @@
-import { useGetCartQuery, useUpdateCartMutation } from "./cartSlice";
+import { useGetCartQuery, useUpdateCartMutation, useCreateCartMutation } from "./cartSlice";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
 export default function Cart() {
   const { data: cart = [], isSuccess, isLoading } = useGetCartQuery();
   const updateCart = useUpdateCartMutation();
+  const createCart = useCreateCartMutation();
   const [cartItem, setCartItem] = useState({ id: null, quantity: 1 });
 
   if (isLoading) {
@@ -18,6 +19,9 @@ export default function Cart() {
   const handleSubmit = async (event, cartItemId) => {
     event.preventDefault();
     try {
+      if (!cart){
+        await createCart();
+      }
       const response = await updateCart({
         id: cartItemId,
         form: cartItem,
