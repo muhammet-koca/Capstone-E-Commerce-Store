@@ -47,7 +47,7 @@ const loginUser = async (email, password) => {
   const passwordValid = await bcrypt.compare(password, user.password);
 
   if (!passwordValid) {
-    throw new Error("Invalid login");
+    throw new Error("Invalid credentials");
   }
   const token = jwt.sign(
     {
