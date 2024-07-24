@@ -14,6 +14,7 @@ const {
   createCartById,
   createCartItemsById,
   getCartById,
+  getCartItemsById
 } = require("../controllers/cartControllers");
 
 const {
@@ -50,6 +51,7 @@ route.get("/getcart/:id", authenticateToken, getCartById); //tested
 
 route.put("/product/cartitem/:id", authenticateToken, updateItemQuantity); //add item to cart (update cart) tested
 route.delete("/checkout/:id", authenticateToken, emptyCartById); //checkout cart (empty cart) tested?
+route.get("/cart/cartitem/:id", authenticateToken, getCartItemsById)
 
 module.exports = route;
 

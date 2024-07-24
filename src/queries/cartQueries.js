@@ -28,6 +28,14 @@ const getCart = async (id) => {
   });
 };
 
+const getCartItems = async (cartId) => {
+  return await prisma.cartItems.findMany({
+    where: {
+      cartId,
+    },
+  });
+};
+
 const addToCart = async (id, productsId) => {
   return await prisma.cartItems.update({
     where: { id },
@@ -61,4 +69,5 @@ module.exports = {
   createCart,
   createCartItems,
   getCart,
+  getCartItems
 };

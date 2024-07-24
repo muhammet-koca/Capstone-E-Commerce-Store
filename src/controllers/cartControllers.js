@@ -5,6 +5,7 @@ const {
   createCart,
   createCartItems,
   getCart,
+  getCartItems
 } = require("../queries/cartQueries");
 
 const createCartById = async (req, res) => {
@@ -40,6 +41,19 @@ const getCartById = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).send("get cart error");
+  }
+};
+
+const getCartItemsById = async (req, res) => {
+  try {
+    const cart = await getCartItems(req.params.cartId);
+    if (!cart) {
+      return res.status(404).send("not found");
+    }
+    res.status(200).json(cart);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("get cartitems error");
   }
 };
 
@@ -98,4 +112,5 @@ module.exports = {
   createCartById,
   createCartItemsById,
   getCartById,
+  getCartItemsById
 };
