@@ -2,6 +2,7 @@ import { useGetProductQuery } from "./homeSlice";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import "./home.css";
 
 export default function Home() {
   const { data: products = [], isSuccess, isLoading } = useGetProductQuery();
@@ -15,13 +16,21 @@ export default function Home() {
   }
 
   return (
-    <div>
+    <div className="product-list">
       {isSuccess &&
         products.map((product) => (
-          <div className="product" key={product.id}>
-            <p>
-              <Link to={`/product/${product.id}`}>{product.productName}</Link>
-            </p>
+          <div className="product-card" key={product.id}>
+            <Link to={`/product/${product.id}`} className="product-link">
+              <img
+                src={product.image}
+                alt={product.productName}
+                className="product-image"
+              />
+              <h2 className="product-name">{product.productName}</h2>
+              <p className="product-price">
+                Price: ${product.price.toFixed(2)}
+              </p>
+            </Link>
           </div>
         ))}
     </div>

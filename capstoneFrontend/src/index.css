@@ -6,54 +6,85 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f4f9;
   color: #333;
   line-height: 1.6;
+  padding: 0;
 }
 
 /* Container */
 .container {
-  width: 80%;
+  width: 90%;
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Header and Navigation */
+header {
+  background: #007bff;
+  color: #fff;
+  padding: 15px 20px;
+  text-align: center;
+  border-radius: 8px;
+}
+
+nav {
+  margin: 20px 0;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
 }
 
 /* Forms */
 form {
   background: #fff;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin: 20px 0;
   display: flex;
   flex-direction: column;
 }
 
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .form-group label {
   display: block;
   font-weight: bold;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
+  color: #007bff;
 }
 
-.form-group input {
+.form-group input,
+.form-group select {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   border: 1px solid #ddd;
-  border-radius: 5px;
+  border-radius: 8px;
+  box-sizing: border-box;
 }
 
 button {
   background-color: #007bff;
   color: #fff;
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 12px 24px;
+  border-radius: 8px;
   cursor: pointer;
   font-size: 16px;
   margin-top: 10px;
@@ -74,6 +105,7 @@ button:hover {
 #register-container h2 {
   text-align: center;
   margin-bottom: 20px;
+  color: #007bff;
 }
 
 #successful {
@@ -83,13 +115,34 @@ button:hover {
 }
 
 /* Home and Update */
+.product {
+  background: #fff;
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product p {
+  margin: 10px 0;
+}
+
+.product a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.product a:hover {
+  text-decoration: underline;
+}
+
 .user-list {
   list-style-type: none;
   padding: 0;
 }
 
 .user-list li {
-  padding: 10px;
+  padding: 15px;
   border-bottom: 1px solid #ddd;
 }
 
@@ -107,5 +160,17 @@ button.btn {
 @media (max-width: 768px) {
   .container {
     width: 95%;
+  }
+
+  .product {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 576px) {
+  button {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
   }
 }

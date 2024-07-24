@@ -33,7 +33,7 @@ export default function Register({ setEmail }) {
       //   console.log(successJson.token.email);
       // }
     } catch (error) {
-      console.log(error, "hello");
+      console.log(error, "Registration error");
     }
   };
 

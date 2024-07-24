@@ -15,7 +15,7 @@ export default function UpdateUser() {
 
   const [form, setForm] = useState({
     firstName: "",
-    LastName: "",
+    lastName: "",
     email: "",
     password: "",
   });
@@ -24,7 +24,7 @@ export default function UpdateUser() {
     if (user) {
       setForm({
         firstName: user.firstName || "",
-        LastName: user.LastName || "",
+        lastName: user.lastName || "",
         email: user.email || "",
         password: "",
       });
@@ -43,7 +43,7 @@ export default function UpdateUser() {
     try {
       const response = await updateUser({ id, form });
       if (response) {
-        navigate("/home");
+        navigate("/");
       }
     } catch (error) {
       console.log("Update error");

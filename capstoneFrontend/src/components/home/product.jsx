@@ -2,6 +2,8 @@ import { useGetProductByIdQuery } from "./homeSlice";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { api } from "../../app/api";
+import { useAddToCartMutation } from "../cart/cartSlice";
+import "./product.css";
 
 const SingleProduct = () => {
   const { id } = useParams();
@@ -10,6 +12,8 @@ const SingleProduct = () => {
     isSuccess,
     isLoading,
   } = useGetProductByIdQuery(id);
+  const [addToCart] = useAddToCartMutation();
+  const navigate = useNavigate();
 
   if (isLoading) {
     return (
@@ -23,48 +27,31 @@ const SingleProduct = () => {
     return <div>Product not found</div>;
   }
 
-  // turn into add to cart function
-  // const handleCheckout = async () => {
-  //   try {
-  //     await checkoutBook(id);
-  //     alert("Book checked out successfully!");
-  //   } catch (error) {
-  //     alert("Failed to checkout.");
-  //   }
-  // };
+  const handleAddToCart = async () => {
+    try {
+      await addToCart({ productId: singleProduct.id, quantity: 1 }).unwrap();
+    } catch (error) {
+      console.log("Failed to add to cart", error);
+    }
+  };
 
   return (
-    <div>
+    <div className="single-product">
+      <img src={singleProduct.image} alt={singleProduct.productName} />
       <h1>{singleProduct.productName}</h1>
-      <p>Price: {singleProduct.price}</p>
-      <img
-        className="img"
-        src={singleProduct.image}
-        alt={singleProduct.productName}
-      />
-      {/* {" "} */}
-      {/* <div>
-    //       {token ? (
-    //         <button
-    //           type="button"
-    //           className="btn btn-primary"
-    //           id="single-button"
-    //           onClick={handleCheckout}
-    //         >
-    //           Checkout
-    //         </button>
-    //       ) : (
-    //         <p>Please log in to checkout this book.</p>
-    //       )}
-    //       <button
-    //         type="button"
-    //         className="btn btn-primary"
-    //         id="single-button"
-    //         onClick={() => navigate("/")}
-    //       >
-    //         Back
-    //       </button>
-    //     </div> */}
+      <p className="price">${singleProduct.price}</p>
+      <button type="button" onClick={handleAddToCart}>
+        Add to Cart
+      </button>
+      <div className="button-container">
+        <button
+          className="back-button"
+          type="button"
+          onClick={() => navigate("/")}
+        >
+          Back
+        </button>
+      </div>
     </div>
   );
 };

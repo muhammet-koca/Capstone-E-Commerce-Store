@@ -10,7 +10,7 @@ const getCartApi = api.injectEndpoints({
       providesTags: ["User"],
     }),
 
-    // delete user
+    // delete cart
     deleteCart: builder.mutation({
       query: ({ id }) => ({
         url: `/store/checkout/${id}`,
@@ -20,7 +20,7 @@ const getCartApi = api.injectEndpoints({
       invalidatesTags: ["User"],
     }),
 
-    // update user
+    // update cart item
     updateCart: builder.mutation({
       query: ({ id, form }) => ({
         url: `/store/product/cartitem/${id}`,
@@ -33,13 +33,25 @@ const getCartApi = api.injectEndpoints({
       }),
       invalidatesTags: ["User"],
     }),
-
+    // create cart
     createCart: builder.mutation({
       query: (credentials) => ({
         url: "/store/cart",
         method: "POST",
         body: credentials,
         responseHandler: (response) => response.text(),
+      }),
+      invalidateTags: ["User"],
+    }),
+    // add to cart
+    addToCart: builder.mutation({
+      query: ({ productId, quantity }) => ({
+        url: "/store/cart",
+        method: "POST",
+        body: {
+          productId,
+          quantity,
+        },
       }),
       invalidateTags: ["User"],
     }),
@@ -67,4 +79,5 @@ export const {
   useDeleteCartMutation,
   useUpdateCartMutation,
   useCreateCartMutation,
+  useAddToCartMutation,
 } = getCartApi;
