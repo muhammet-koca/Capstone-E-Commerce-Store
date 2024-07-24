@@ -2,10 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import {
   useGetUserQuery,
-//   useDeleteUserMutation,
+  //   useDeleteUserMutation,
   useUpdateUserMutation,
 } from "./updateSlice";
-
 
 export default function UpdateUser() {
   const { id } = useParams();
@@ -55,7 +54,7 @@ export default function UpdateUser() {
     <div>
       <h1>
         Update User:{" "}
-        {user ? `${user.firstName} ${user.LastName}` : "Loading..."}
+        {user ? `${user.firstName} ${user.lastName}` : "Loading..."}
       </h1>
       <form onSubmit={handleUser}>
         <div className="form-group">
@@ -72,8 +71,8 @@ export default function UpdateUser() {
         <div className="form-group">
           <label>Last Name</label>
           <input
-            name="LastName"
-            value={form.LastName}
+            name="lastName"
+            value={form.lastName}
             onChange={update}
             type="text"
             className="form-control"

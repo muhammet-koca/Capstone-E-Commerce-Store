@@ -29,8 +29,7 @@ const Login = ({ setEmail }) => {
     } catch (error) {
       // add error handling for future
       console.log(error);
-      document.getElementById("successful").innerText =
-        "Please complete all fields";
+      document.getElementById("successful").innerText = "Invalid Credentials";
     }
   };
 

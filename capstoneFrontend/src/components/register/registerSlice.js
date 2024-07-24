@@ -26,11 +26,10 @@ const registerSlice = createSlice({
     builder.addMatcher(
       registerApi.endpoints.register.matchFulfilled,
       (state, { payload }) => {
-        const temp = payload;
+        const token = payload;
         // state.token = temp.token.token;
         // state.email = temp.token.email;
-        // window.sessionStorage.setItem("Token", temp.token.token);
-        console.log(temp);
+        window.sessionStorage.setItem("Token", token);
       }
     );
   },

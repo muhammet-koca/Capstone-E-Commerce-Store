@@ -21,10 +21,10 @@ function storeToken(state, { payload }) {
   console.log(payload);
 
   const temp = JSON.parse(payload);
-  console.log(temp.token.email);
-  state.token = temp.token.token;
-  state.email = temp.token.email;
-  window.sessionStorage.setItem(TOKEN, temp.token.token);
+  //   console.log(temp.token.email);
+  state.token = temp.token;
+  //   state.email = temp.token.email;
+  window.sessionStorage.setItem(TOKEN, temp.token);
 }
 
 const loginSlice = createSlice({
