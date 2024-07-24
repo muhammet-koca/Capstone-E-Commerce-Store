@@ -48,9 +48,12 @@ route.post("/cartitems", authenticateToken, createCartItemsById); //tested
 
 route.get("/getcart/:id", authenticateToken, getCartById); //tested
 
-route.put("/product/cartitem/:id", authenticateToken, updateItemQuantity); //add item to cart (update cart)
-route.delete("/checkout/:id", authenticateToken, emptyCartById); //checkout cart (empty cart)
-//retest all routes
-//deploy backend
+route.put("/product/cartitem/:id", authenticateToken, updateItemQuantity); //add item to cart (update cart) tested
+route.delete("/checkout/:id", authenticateToken, emptyCartById); //checkout cart (empty cart) tested?
 
 module.exports = route;
+
+//retest all routes
+//No one else should be able to edit my cart except me.
+
+//deploy backend
