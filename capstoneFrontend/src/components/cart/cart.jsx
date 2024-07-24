@@ -1,9 +1,15 @@
-import { useGetCartQuery, useUpdateCartMutation, useCreateCartMutation } from "./cartSlice";
-import { Link } from "react-router-dom";
+import {
+  useGetCartQuery,
+  useUpdateCartMutation,
+  useCreateCartMutation,
+} from "./cartSlice";
+import { Link, useParams } from "react-router-dom";
 import { useState } from "react";
 
 export default function Cart() {
-  const { data: cart = [], isSuccess, isLoading } = useGetCartQuery();
+  const { id } = useParams();
+  const { data: cart = [], isSuccess, isLoading } = useGetCartQuery({ id });
+  console.log(cart);
   const updateCart = useUpdateCartMutation();
   const createCart = useCreateCartMutation();
   const [cartItem, setCartItem] = useState({ id: null, quantity: 1 });
@@ -19,7 +25,7 @@ export default function Cart() {
   const handleSubmit = async (event, cartItemId) => {
     event.preventDefault();
     try {
-      if (!cart){
+      if (!cart) {
         await createCart();
       }
       const response = await updateCart({
@@ -39,7 +45,7 @@ export default function Cart() {
   return (
     <div>
       {isSuccess &&
-        cart.map((cartItem) => (
+        cart.cartItems.map((cartItem) => (
           <div className="product" key={cartItem.id}>
             <p>
               <Link to={`/product/cartitem/${cartItem.id}`}>

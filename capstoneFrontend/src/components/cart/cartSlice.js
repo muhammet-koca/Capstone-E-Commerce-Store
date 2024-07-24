@@ -62,5 +62,9 @@ const cartSlice = createSlice({
 
 export default cartSlice.reducer;
 
-export const { useGetCartQuery, useDeleteCartMutation, useUpdateCartMutation, useCreateCartMutation } =
-  getCartApi;
+export const {
+  useGetCartQuery,
+  useDeleteCartMutation,
+  useUpdateCartMutation,
+  useCreateCartMutation,
+} = getCartApi;

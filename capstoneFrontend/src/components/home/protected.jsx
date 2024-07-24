@@ -8,7 +8,7 @@ const Protected = () => {
   );
   const sessionToken = window.sessionStorage.getItem("Token");
   if (!token && !sessionToken) {
-    return <Navigate to="/store/login" />;
+    return <Navigate to="/login" />;
   }
   return <Outlet />;
 };

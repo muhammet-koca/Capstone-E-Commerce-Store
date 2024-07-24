@@ -4,6 +4,7 @@ import Update from "./components/features/update";
 import SingleProduct from "./components/home/product";
 import Home from "./components/home/home";
 import Register from "./components/register/register";
+import Cart from "./components/cart/cart";
 import { useState } from "react";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -22,6 +23,7 @@ function App() {
           <Route path="/register" element={<Register setEmail={setEmail} />} />
           {/* <Route path="/update" element={<Update setEmail={setEmail} />} /> */}
           <Route element={<Protected />}>
+            <Route path="/getcart/:id" element={<Cart />} />
             {/* <Route path="/home" element={<Home email={email} />} /> */}
             <Route path="/update/:id" element={<Update />} />
           </Route>
