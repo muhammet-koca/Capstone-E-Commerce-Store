@@ -2,9 +2,11 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRegisterMutation } from "../register/registerSlice";
+import { useCreateCartMutation } from "../cart/cartSlice";
 
 export default function Register({ setEmail }) {
   const [registerUser] = useRegisterMutation();
+  const [createCart] = useCreateCartMutation();
   const navigate = useNavigate();
   const [form, setForm] = useState({
     firstName: "",
@@ -25,14 +27,13 @@ export default function Register({ setEmail }) {
     try {
       let success = false;
       success = await registerUser(form).unwrap();
+      // const response = await registerUser(form).unwrap();
+      // const token = response;
+      // window.sessionStorage.setItem("Token", token);
+      // await createCart({ userId }).unwrap();
       navigate(`/`);
-      // const successJson = JSON.parse(success);
+
       console.log("test:", success);
-      // if (success) {
-      //   setEmail(successJson.token.email);
-      //   navigate("/home");
-      //   console.log(successJson.token.email);
-      // }
     } catch (error) {
       console.log(error, "Registration error");
     }
