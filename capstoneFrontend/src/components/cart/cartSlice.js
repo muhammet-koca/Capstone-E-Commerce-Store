@@ -5,7 +5,7 @@ const getCartApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getCart: builder.query({
       query: ({ id }) => ({
-        url: `/store/getcart/${id}`,
+        url: `/store/getCart/${id}`,
       }),
       providesTags: ["User"],
     }),
@@ -23,7 +23,7 @@ const getCartApi = api.injectEndpoints({
     // update cart item
     updateCart: builder.mutation({
       query: ({ id, form }) => ({
-        url: `/store/product/cartitem/${id}`,
+        url: `/store/product/cartItem/${id}`,
         method: "PUT",
         body: {
           product: form.product,
@@ -45,11 +45,12 @@ const getCartApi = api.injectEndpoints({
     }),
     // add to cart
     addToCart: builder.mutation({
-      query: ({ id }) => ({
+      query: ({ id, cartId }) => ({
         url: `/store/cartItems/product/${id}`,
         method: "POST",
         body: {
-          quantity,
+          productsId: id,
+          cartId: cartId,
         },
       }),
       invalidateTags: ["User"],

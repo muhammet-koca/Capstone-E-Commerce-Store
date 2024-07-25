@@ -29,17 +29,12 @@ export default function Register({ setEmail }) {
 
       response = await registerUser(form).unwrap();
       const responseJson = JSON.parse(response);
-      console.log(responseJson.token);
-      console.log(responseJson.id);
+      console.log(responseJson);
 
-      // window.sessionStorage.setItem("Token", token);
-      // console.log(token.id);
-      // const userId = token.id;
-      // await createCart({ userId }).unwrap();
       if (response) {
+        console.log(responseJson.id);
         await createCart(responseJson.id);
         navigate("/");
-        console.log(responseJson);
       }
     } catch (error) {
       console.log(error, "Registration error");
