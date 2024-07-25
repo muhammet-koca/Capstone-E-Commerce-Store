@@ -25,6 +25,7 @@ export default function Register({ setEmail }) {
   const submit = async (e) => {
     e.preventDefault();
     try {
+
       let response = false;
 
       response = await registerUser(form).unwrap();

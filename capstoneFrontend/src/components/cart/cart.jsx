@@ -2,16 +2,18 @@ import {
   useGetCartQuery,
   useUpdateCartMutation,
   useCreateCartMutation,
+  useDeleteCartMutation,
 } from "./cartSlice";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 export default function Cart() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const { data: cart = [], isSuccess, isLoading } = useGetCartQuery({ id });
-  console.log(cart);
-  const updateCart = useUpdateCartMutation();
+  const [updateCart] = useUpdateCartMutation();
   const createCart = useCreateCartMutation();
+  const [deleteCart] = useDeleteCartMutation();
   const [cartItem, setCartItem] = useState({ id: null, quantity: 1 });
 
   if (isLoading) {
@@ -42,6 +44,15 @@ export default function Cart() {
     setCartItem({ id: cartItemId, quantity: Number(event.target.value) });
   };
 
+  const handleCheckout = async () => {
+    try {
+      await deleteCart({ id });
+      navigate("/");
+    } catch (error) {
+      console.log("Checkout error", error);
+    }
+  };
+
   return (
     <div>
       {isSuccess &&
@@ -65,9 +76,8 @@ export default function Cart() {
                     className="custom-select mr-sm-2"
                     id="inlineFormCustomSelect"
                     onChange={(e) => handleSelectChange(e, cartItem.id)}
-                    defaultValue={cartItem.quantity}
+                    value={cartItem.quantity}
                   >
-                    <option selected>Choose...</option>
                     <option value="1">One</option>
                     <option value="2">Two</option>
                     <option value="3">Three</option>
@@ -82,6 +92,11 @@ export default function Cart() {
             </form>
           </div>
         ))}
+      <div className="checkout-button">
+        <button className="btn btn-success" onClick={handleCheckout}>
+          Proceed to Checkout
+        </button>
+      </div>
     </div>
   );
 }

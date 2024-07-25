@@ -25,11 +25,13 @@ const getCartApi = api.injectEndpoints({
       query: ({ id, form }) => ({
         url: `/store/product/cartItem/${id}`,
         method: "PUT",
-        body: {
-          product: form.product,
-          quantity: form.quantity,
-        },
-        responseHandler: (response) => response.text(),
+        body: form,
+        // {
+        //   product: form.product,
+        //   quantity: form.quantity,
+
+        // },
+        // responseHandler: (response) => response.text(),
       }),
       invalidatesTags: ["User"],
     }),
@@ -41,7 +43,7 @@ const getCartApi = api.injectEndpoints({
         body: { usersId: id },
         responseHandler: (response) => response.text(),
       }),
-      invalidateTags: ["User"],
+      invalidatesTags: ["User"],
     }),
     // add to cart
     addToCart: builder.mutation({
