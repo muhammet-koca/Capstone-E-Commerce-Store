@@ -54,4 +54,6 @@ route.delete("/checkout/:id", authenticateToken, emptyCartById); //checkout cart
 //retest all routes
 //No one else should be able to edit my cart except me.
 
+module.exports = route;
+
 //deploy backend
