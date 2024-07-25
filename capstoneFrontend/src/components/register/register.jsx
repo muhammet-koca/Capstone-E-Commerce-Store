@@ -13,7 +13,7 @@ export default function Register({ setEmail }) {
   const dispatch = useDispatch();
 
   const state = useSelector((state) => state);
-  console.log(state, "before");
+
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
