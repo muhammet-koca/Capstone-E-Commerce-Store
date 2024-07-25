@@ -1,4 +1,5 @@
 const { bcrypt, prisma, jwt } = require("../share");
+// import { createCart } from "./cartQueries";
 
 const registerQuery = async ({
   firstName,
@@ -16,6 +17,8 @@ const registerQuery = async ({
       email,
       password: hashPassword,
       isAdmin,
+    },
+    include: {
       cart,
     },
   });
@@ -23,13 +26,14 @@ const registerQuery = async ({
     {
       id: registerUser.id,
       isAdmin: registerUser.isAdmin,
+      cart: registerUser.cart,
     },
     process.env.WEB_TOKEN,
     {
       expiresIn: "1h",
     }
   );
-  const updatedToken = { token, id: registerUser.id };
+  const updatedToken = { token, id: registerUser.id, cart: registerUser.cart };
   return updatedToken;
 };
 
@@ -38,6 +42,9 @@ const loginUser = async (email, password) => {
   const user = await prisma.users.findUnique({
     where: {
       email,
+    },
+    include: {
+      cart: true,
     },
   });
   console.log("user:", user);
@@ -54,10 +61,11 @@ const loginUser = async (email, password) => {
     {
       id: user.id,
       isAdmin: user.isAdmin,
+      cart: user.cart,
     },
     process.env.WEB_TOKEN
   );
-  const updatedToken = { token, id: registerUser.id };
+  const updatedToken = { token, id: user.id, cart: user.cart };
   return updatedToken;
 };
 
