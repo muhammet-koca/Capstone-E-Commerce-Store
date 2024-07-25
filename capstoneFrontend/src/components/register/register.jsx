@@ -25,6 +25,7 @@ export default function Register({ setEmail }) {
     try {
       let success = false;
       success = await registerUser(form).unwrap();
+      navigate(`/`);
       // const successJson = JSON.parse(success);
       console.log("test:", success);
       // if (success) {

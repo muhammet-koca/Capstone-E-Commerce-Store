@@ -14,7 +14,7 @@ export default function Home() {
       </div>
     );
   }
-  //test
+
   return (
     <div className="product-list">
       {isSuccess &&
