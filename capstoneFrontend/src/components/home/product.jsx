@@ -1,4 +1,5 @@
 import { useGetProductByIdQuery } from "./homeSlice";
+import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { api } from "../../app/api";
@@ -15,6 +16,11 @@ const SingleProduct = () => {
   const [addToCart] = useAddToCartMutation();
   const navigate = useNavigate();
 
+  const cartId = useSelector(
+    (state) => state.login.cart.id || state.register.cart
+  );
+  console.log(cartId);
+
   if (isLoading) {
     return (
       <div className="loading">
@@ -29,7 +35,7 @@ const SingleProduct = () => {
 
   const handleAddToCart = async () => {
     try {
-      await addToCart({ id }).unwrap();
+      await addToCart({ id, cartId });
       alert("Added to Cart");
     } catch (error) {
       console.log("Failed to add to cart", error);
