@@ -3,11 +3,17 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRegisterMutation } from "../register/registerSlice";
 import { useCreateCartMutation } from "../cart/cartSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { setCart } from "../register/registerSlice";
 
 export default function Register({ setEmail }) {
   const [registerUser] = useRegisterMutation();
   const [createCart] = useCreateCartMutation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const state = useSelector((state) => state);
+  console.log(state, "before");
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
@@ -25,16 +31,19 @@ export default function Register({ setEmail }) {
   const submit = async (e) => {
     e.preventDefault();
     try {
-
       let response = false;
 
       response = await registerUser(form).unwrap();
       const responseJson = JSON.parse(response);
-      console.log(responseJson);
 
       if (response) {
-        console.log(responseJson.id);
-        await createCart(responseJson.id);
+        const createUserCart = await createCart(responseJson.id);
+        const cartId = JSON.parse(createUserCart.data);
+        dispatch(setCart(cartId.id));
+        // const success = { ...responseJson, cart: cartId.id };
+        // state.cart = cartId.id;
+        // console.log(state, "after");
+
         navigate("/");
       }
     } catch (error) {

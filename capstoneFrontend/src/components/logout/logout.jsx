@@ -23,3 +23,5 @@ const Logout = () => {
 };
 
 export default Logout;
+
+// export const { Logout } = logoutUser;
