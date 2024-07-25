@@ -35,21 +35,20 @@ const getCartApi = api.injectEndpoints({
     }),
     // create cart
     createCart: builder.mutation({
-      query: (credentials) => ({
+      query: (id) => ({
         url: "/store/cart",
         method: "POST",
-        body: credentials,
+        body: { usersId: id },
         responseHandler: (response) => response.text(),
       }),
       invalidateTags: ["User"],
     }),
     // add to cart
     addToCart: builder.mutation({
-      query: ({ productId, quantity }) => ({
+      query: ({ id }) => ({
         url: `/store/cartItems/product/${id}`,
         method: "POST",
         body: {
-          productId,
           quantity,
         },
       }),

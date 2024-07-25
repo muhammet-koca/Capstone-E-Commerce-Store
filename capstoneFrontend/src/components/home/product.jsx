@@ -29,7 +29,8 @@ const SingleProduct = () => {
 
   const handleAddToCart = async () => {
     try {
-      await addToCart({ productId: singleProduct.id, quantity: 1 }).unwrap();
+      await addToCart({ id }).unwrap();
+      alert("Added to Cart");
     } catch (error) {
       console.log("Failed to add to cart", error);
     }
