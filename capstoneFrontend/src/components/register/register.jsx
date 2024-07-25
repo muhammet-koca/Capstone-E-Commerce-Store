@@ -25,15 +25,18 @@ export default function Register({ setEmail }) {
   const submit = async (e) => {
     e.preventDefault();
     try {
-      let success = false;
-      success = await registerUser(form).unwrap();
-      // const response = await registerUser(form).unwrap();
-      // const token = response;
-      // window.sessionStorage.setItem("Token", token);
-      // await createCart({ userId }).unwrap();
-      navigate(`/`);
 
-      console.log("test:", success);
+      let response = false;
+
+      response = await registerUser(form).unwrap();
+      const responseJson = JSON.parse(response);
+      console.log(responseJson);
+
+      if (response) {
+        console.log(responseJson.id);
+        await createCart(responseJson.id);
+        navigate("/");
+      }
     } catch (error) {
       console.log(error, "Registration error");
     }
