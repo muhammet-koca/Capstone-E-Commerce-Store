@@ -21,7 +21,12 @@ const registerSlice = createSlice({
     user: {},
     token: null,
   },
-  reducers: {},
+  reducers: {
+    setCart: (state, action) => {
+      state.cart = action.payload;
+    },
+  },
+
   extraReducers: (builder) => {
     builder.addMatcher(
       registerApi.endpoints.register.matchFulfilled,
@@ -41,3 +46,5 @@ const registerSlice = createSlice({
 export default registerSlice.reducer;
 
 export const { useRegisterMutation } = registerApi;
+
+export const { setCart } = registerSlice.actions;

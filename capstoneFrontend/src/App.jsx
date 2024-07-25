@@ -7,6 +7,7 @@ import Register from "./components/register/register";
 import Cart from "./components/cart/cart";
 import Navigation from "./components/navigation/navigation";
 import { useState } from "react";
+import Navigation from "./components/home/Navigation";
 import Logout from "./components/logout/logout";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
