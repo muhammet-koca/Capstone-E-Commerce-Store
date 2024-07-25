@@ -5,7 +5,7 @@ const {
   createCart,
   createCartItems,
   getCart,
-  getCartItems
+  getCartItems,
 } = require("../queries/cartQueries");
 
 const createCartById = async (req, res) => {
@@ -88,18 +88,30 @@ const updateItemQuantity = async (req, res) => {
   }
 };
 
+// const emptyCartById = async (req, res) => {
+//   try {
+//     const cart = await emptyCart(
+//       req.params.id,
+//       req.body.cartItems,
+//       req.body.usersId
+//     );
+//     console.log(cart, "testcart");
+//     if (!cart) {
+//       return res.status(404).send("cart empty");
+//     }
+//     res.send(cart);
+//   } catch (error) {
+//     res.status(500).send("cart error");
+//   }
+// };
+
 const emptyCartById = async (req, res) => {
   try {
-    const cart = await emptyCart(
-      req.params.id,
-      req.body.cartItems,
-      req.body.usersId
-    );
-    console.log(cart, "testcart");
+    const cart = await emptyCart(req.params.id);
     if (!cart) {
       return res.status(404).send("cart empty");
     }
-    res.send(cart);
+    res.send(console.log("success"));
   } catch (error) {
     res.status(500).send("cart error");
   }
@@ -112,5 +124,5 @@ module.exports = {
   createCartById,
   createCartItemsById,
   getCartById,
-  getCartItemsById
+  getCartItemsById,
 };
