@@ -5,6 +5,7 @@ import SingleProduct from "./components/home/product";
 import Home from "./components/home/home";
 import Register from "./components/register/register";
 import Cart from "./components/cart/cart";
+import Navigation from "./components/navigation/navigation";
 import { useState } from "react";
 import Logout from "./components/logout/logout";
 
@@ -17,6 +18,7 @@ function App() {
   return (
     <>
       <Router>
+        <Navigation />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/product/:id" element={<SingleProduct />} />
