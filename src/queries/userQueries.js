@@ -33,6 +33,7 @@ const registerQuery = async ({
       expiresIn: "1h",
     }
   );
+  console.log(registerUser, "test");
   const updatedToken = { token, id: registerUser.id, cart: registerUser.cart };
   return updatedToken;
 };
