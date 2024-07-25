@@ -45,16 +45,12 @@ route.delete("/user/:id", authenticateToken, deleteUser); //only delete self tes
 route.put("/user/:id", authenticateToken, updateUser); //only update self tested
 
 route.post("/cart", authenticateToken, createCartById); //create cart tested
-route.post("/cartitems", authenticateToken, createCartItemsById); //tested
+route.post("/cartItems/product/:id", authenticateToken, createCartItemsById); //tested
 
-route.get("/getcart/:id", authenticateToken, getCartById); //tested
+route.get("/getCart/:id", authenticateToken, getCartById); //tested
 
-route.put("/product/cartitem/:id", authenticateToken, updateItemQuantity); //add item to cart (update cart) tested
-route.delete("/checkout/:id", authenticateToken, emptyCartById); //checkout cart (empty cart) tested?
-route.get("/cart/cartitem/:id", authenticateToken, getCartItemsById);
-
-module.exports = route;
-
+route.put("/product/cartItem/:id", authenticateToken, updateItemQuantity); //add item to cart (update cart)
+route.delete("/checkout/:id", authenticateToken, emptyCartById); //checkout cart (empty cart)
 //retest all routes
 //No one else should be able to edit my cart except me.
 
