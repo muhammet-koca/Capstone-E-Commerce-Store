@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 
 export default function Navigation() {
   const sessionToken = window.sessionStorage.getItem("Token");
+  const sessionUser = window.sessionStorage.getItem("User");
+  const sessionCart = window.sessionStorage.getItem("Cart");
   const token = useSelector(
     (state) => state.login.token || state.register.token
   );
@@ -12,7 +14,8 @@ export default function Navigation() {
   const navigate = useNavigate();
   // const cart = useSelector((state) => state.register.cart);
 
-  console.log("User:", user);
+  console.log("User:", sessionUser);
+  console.log("Cart:", sessionCart);
 
   const handleLogout = async () => {
     try {
@@ -63,7 +66,7 @@ export default function Navigation() {
                 </Link>
               )}
 
-              <Link to="/getCart/:id" className="nav-link">
+              <Link to={`/getCart/${sessionCart}`} className="nav-link">
                 Cart
               </Link>
               {/* {(token || sessionToken) && user && user.id && (
