@@ -24,7 +24,9 @@ function storeToken(state, { payload }) {
   //   console.log(temp.token.email);
   state.token = temp.token.token;
   state.id = temp.token.id;
-  state.cart = temp.token.cart;
+  state.user = temp.token;
+  // state.cart = temp.token.cart.id;
+
   window.sessionStorage.setItem(TOKEN, temp.token);
 }
 
@@ -35,7 +37,12 @@ const loginSlice = createSlice({
     id: "",
     cart: {},
   },
-  reducers: {},
+  reducers: {
+    setUser: (state, action) => {
+      console.log("Setting user in login:", action.payload);
+      state.user = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addMatcher(api.endpoints.login.matchFulfilled, storeToken);
   },

@@ -25,6 +25,10 @@ const registerSlice = createSlice({
     setCart: (state, action) => {
       state.cart = action.payload;
     },
+    setUser: (state, action) => {
+      console.log("Setting user in login:", action.payload);
+      state.user = action.payload;
+    },
   },
 
   extraReducers: (builder) => {
@@ -32,9 +36,10 @@ const registerSlice = createSlice({
       registerApi.endpoints.register.matchFulfilled,
       (state, { payload }) => {
         const temp = JSON.parse(payload);
-        console.log(temp);
+        console.log("Register response", temp);
         console.log(temp.cart);
         state.token = temp.token;
+        state.user = temp;
         state.id = temp.id;
         state.cart = temp.cart;
         window.sessionStorage.setItem("Token", temp.token);

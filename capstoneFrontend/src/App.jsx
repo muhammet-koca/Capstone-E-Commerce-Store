@@ -27,7 +27,7 @@ function App() {
           <Route path="/logout" element={<Logout />} />
           {/* <Route path="/update" element={<Update setEmail={setEmail} />} /> */}
           <Route element={<Protected />}>
-            <Route path="/getcart/:id" element={<Cart />} />
+            <Route path="/getCart/:id" element={<Cart />} />
             {/* <Route path="/home" element={<Home email={email} />} /> */}
             <Route path="/update/:id" element={<Update />} />
           </Route>

@@ -8,17 +8,16 @@ export default function Navigation() {
   const token = useSelector(
     (state) => state.login.token || state.register.token
   );
+  const user = useSelector((state) => state.login.user || state.register.user);
   const navigate = useNavigate();
+  // const cart = useSelector((state) => state.register.cart);
+
+  console.log("User:", user);
 
   const handleLogout = async () => {
     try {
-      // const sessionToken = window.sessionStorage.getItem("Token");
-      // sessionStorage.clear(sessionToken);
-
       sessionStorage.removeItem("Token");
-
       alert("Logged Out!");
-
       navigate("/");
     } catch (error) {
       console.log("Logout error", error);
@@ -58,20 +57,29 @@ export default function Navigation() {
                   Login
                 </Link>
               )}
-              {(token || sessionToken) && (
-                <Link to="/update/:id" className="nav-link">
+              {(token || sessionToken) && user && user.id && (
+                <Link to={`/update/${user.id}`} className="nav-link">
                   Account
                 </Link>
               )}
-              <Link to="/getcart/:id" className="nav-link">
+
+              <Link to="/getCart/:id" className="nav-link">
                 Cart
               </Link>
+              {/* {(token || sessionToken) && user && user.id && (
+                <Link
+                  to={`/getCart/${user.cart.id || cart.id}`}
+                  className="nav-link"
+                >
+                  Cart
+                </Link>
+              )} */}
               <button
                 type="button"
                 className="btn btn-danger"
                 onClick={handleLogout}
               >
-                Danger
+                Logout
               </button>
             </div>
           </div>
