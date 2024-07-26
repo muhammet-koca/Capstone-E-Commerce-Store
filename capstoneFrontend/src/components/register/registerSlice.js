@@ -43,6 +43,7 @@ const registerSlice = createSlice({
         state.id = temp.id;
         state.cart = temp.cart;
         window.sessionStorage.setItem("Token", temp.token);
+        window.sessionStorage.setItem("User", temp.id);
       }
     );
   },

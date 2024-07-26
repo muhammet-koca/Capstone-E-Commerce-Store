@@ -26,8 +26,10 @@ function storeToken(state, { payload }) {
   state.id = temp.token.id;
   state.user = temp.token;
   // state.cart = temp.token.cart.id;
-
+  console.log(temp.token.cart.id);
   window.sessionStorage.setItem(TOKEN, temp.token);
+  window.sessionStorage.setItem("User", temp.token.id);
+  window.sessionStorage.setItem("Cart", temp.token.cart.id);
 }
 
 const loginSlice = createSlice({

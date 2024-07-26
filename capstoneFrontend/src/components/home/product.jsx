@@ -15,10 +15,11 @@ const SingleProduct = () => {
   } = useGetProductByIdQuery(id);
   const [addToCart] = useAddToCartMutation();
   const navigate = useNavigate();
+  const sessionCart = window.sessionStorage.getItem("Cart");
 
-  const cartId = useSelector(
-    (state) => state.login.cart.id || state.register.cart
-  );
+  // const cartId = useSelector(
+  //   (state) => state.login.cart.id || state.register.cart
+  // );
 
   if (isLoading) {
     return (
@@ -34,7 +35,7 @@ const SingleProduct = () => {
 
   const handleAddToCart = async () => {
     try {
-      await addToCart({ id, cartId });
+      await addToCart({ id, sessionCart });
       alert("Added to Cart");
     } catch (error) {
       console.log("Failed to add to cart", error);

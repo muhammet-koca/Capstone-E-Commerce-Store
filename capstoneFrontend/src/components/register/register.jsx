@@ -41,6 +41,7 @@ export default function Register({ setEmail }) {
         const createUserCart = await createCart(responseJson.id);
         const cartId = JSON.parse(createUserCart.data);
         dispatch(setCart(cartId.id));
+        window.sessionStorage.setItem("Cart", cartId.id);
         // state.cart = cartId.id;
         // console.log("Cart ID:", cartId);
         // console.log(state, "after");

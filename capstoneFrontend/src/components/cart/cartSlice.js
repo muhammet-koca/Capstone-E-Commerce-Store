@@ -4,7 +4,7 @@ import { api } from "../../app/api";
 const getCartApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getCart: builder.query({
-      query: ({id}) => ({
+      query: ({ id }) => ({
         url: `/store/getCart/${id}`,
       }),
       providesTags: ["User"],
@@ -47,12 +47,12 @@ const getCartApi = api.injectEndpoints({
     }),
     // add to cart
     addToCart: builder.mutation({
-      query: ({ id, cartId }) => ({
+      query: ({ id, sessionCart }) => ({
         url: `/store/cartItems/product/${id}`,
         method: "POST",
         body: {
           productsId: id,
-          cartId: cartId,
+          cartId: sessionCart,
         },
       }),
       invalidateTags: ["User"],
