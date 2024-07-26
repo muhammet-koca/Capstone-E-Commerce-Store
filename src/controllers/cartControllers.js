@@ -49,7 +49,6 @@ const getCartItemsById = async (req, res) => {
   }
 };
 
-
 const addToCartById = async (req, res) => {
   try {
     const product = await addToCart(req.params.id, req.body.productsId);
@@ -116,6 +115,7 @@ const updateItemQuantity = async (req, res) => {
 // };
 
 const emptyCartById = async (req, res) => {
+  console.log(req.params);
   try {
     await emptyCart(req.params.id);
     res.status(200).send("Cart successfully emptied");

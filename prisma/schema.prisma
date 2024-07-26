@@ -34,7 +34,7 @@ model Products {
 
 model Cart {
   id String @id @default(uuid())
-  cartItems CartItems[] 
+  cartItems CartItems[]
   users Users @relation(fields: [usersId], references: [id], onDelete: SetNull)
   usersId String @unique
 }

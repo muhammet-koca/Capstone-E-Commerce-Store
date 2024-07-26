@@ -66,10 +66,17 @@ const updateCartItems = async (id, productsId, quantity) => {
   });
 };
 
-const emptyCart = async (id) => {
-  return await prisma.cart.delete({
-    where: { id },
+const emptyCart = async (cartId) => {
+  console.log(cartId, "id");
+  const deleteUsers = await prisma.cartItems.deleteMany({
+    where: {
+      cartId: {
+        contains: cartId,
+      },
+    },
   });
+  console.log(deleteUsers, "deleteuser");
+  return deleteUsers;
 };
 
 module.exports = {
