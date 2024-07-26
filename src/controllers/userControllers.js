@@ -6,26 +6,34 @@ const {
   updateUserById,
   getSingleUser,
 } = require("../queries/userQueries");
-const { bcrypt } = require("../share");
-const { jwt } = require("../share");
 
 const register = async (req, res) => {
-  const token = await registerQuery(req.body);
-  res.send(token);
+  try {
+    const token = await registerQuery(req.body);
+    res.status(201).json(token);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Registration failed" });
+  }
 };
 
 const login = async (req, res) => {
-  const token = await loginUser(req.body.email, req.body.password);
-
-  res.status(201).send({ token });
+  try {
+    const token = await loginUser(req.body.email, req.body.password);
+    res.status(200).json({ token });
+  } catch (error) {
+    console.error(error);
+    res.status(401).json({ error: "Login failed" });
+  }
 };
 
 const getUsers = async (req, res) => {
   try {
     const users = await getAllUsers();
-    return res.status(200).json(users);
+    res.status(200).json(users);
   } catch (error) {
-    res.status(500).send("error");
+    console.error(error);
+    res.status(500).json({ error: "Failed to retrieve users" });
   }
 };
 
@@ -33,11 +41,12 @@ const deleteUser = async (req, res) => {
   try {
     const user = await deleteUserById(req.params.id);
     if (!user) {
-      return res.status(404).send("not found");
+      return res.status(404).json({ error: "User not found" });
     }
-    res.send(console.log("success"));
+    res.status(200).json({ message: "User deleted successfully" });
   } catch (error) {
-    res.status(500).send("delete error");
+    console.error(error);
+    res.status(500).json({ error: "Failed to delete user" });
   }
 };
 
@@ -52,12 +61,12 @@ const updateUser = async (req, res) => {
       req.body.isAdmin
     );
     if (!user) {
-      return res.status(404).send("not found");
+      return res.status(404).json({ error: "User not found" });
     }
-    console.log(user);
-    res.send(user);
+    res.status(200).json(user);
   } catch (error) {
-    res.status(500).send("update error");
+    console.error(error);
+    res.status(500).json({ error: "Failed to update user" });
   }
 };
 
@@ -65,11 +74,12 @@ const getUserById = async (req, res) => {
   try {
     const user = await getSingleUser(req.params.id);
     if (!user) {
-      return res.status(404).send("not found");
+      return res.status(404).json({ error: "User not found" });
     }
     res.status(200).json(user);
   } catch (error) {
-    res.status(500).send("single user error");
+    console.error(error);
+    res.status(500).json({ error: "Failed to retrieve user" });
   }
 };
 

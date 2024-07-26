@@ -13,7 +13,8 @@ const getProducts = async (req, res) => {
     const products = await getAllProducts();
     res.status(200).json(products);
   } catch (error) {
-    res.status(500).send("error");
+    console.error(error);
+    res.status(500).json({ error: "Failed to retrieve products" });
   }
 };
 
@@ -23,29 +24,36 @@ const getProductById = async (req, res) => {
   try {
     const product = await getProduct(req.params.id);
     if (!product) {
-      return res.status(404).send("not found");
+      return res.status(404).json({ error: "Product not found" });
     }
     res.status(200).json(product);
   } catch (error) {
-    res.status(500).send("single product error");
+    console.error(error);
+    res.status(500).json({ error: "Failed to retrieve product" });
   }
 };
 
 //add new products
 const addProduct = async (req, res) => {
-  const product = await addProductId(req.body);
-  res.send(product);
+  try {
+    const product = await addProductId(req.body);
+    res.status(201).json(product);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to add product" });
+  }
 };
 //delete products
 const deleteProductById = async (req, res) => {
   try {
     const product = await deleteProduct(req.params.id);
     if (!product) {
-      return res.status(404).send("not found");
+      return res.status(404).json({ error: "Product not found" });
     }
-    res.send(console.log("success"));
+    res.status(200).json({ message: "Product deleted successfully" });
   } catch (error) {
-    res.status(500).send("delete error");
+    console.error(error);
+    res.status(500).json({ error: "Failed to delete product" });
   }
 };
 
@@ -59,12 +67,12 @@ const updateProduct = async (req, res) => {
       req.body.publish
     );
     if (!product) {
-      return res.status(404).send("not found");
+      return res.status(404).json({ error: "Product not found" });
     }
-    console.log(product);
-    res.send(product);
+    res.status(200).json(product);
   } catch (error) {
-    res.status(500).send("update product error");
+    console.error(error);
+    res.status(500).json({ error: "Failed to update product" });
   }
 };
 
