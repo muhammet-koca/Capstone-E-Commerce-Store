@@ -4,7 +4,7 @@ import { api } from "../../app/api";
 const getCartApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getCart: builder.query({
-      query: ({ id }) => ({
+      query: ({id}) => ({
         url: `/store/getCart/${id}`,
       }),
       providesTags: ["User"],

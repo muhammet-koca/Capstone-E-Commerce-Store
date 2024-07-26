@@ -23,16 +23,6 @@ const SingleProduct = () => {
     return <div>Product not found</div>;
   }
 
-  // turn into add to cart function
-  // const handleCheckout = async () => {
-  //   try {
-  //     await checkoutBook(id);
-  //     alert("Book checked out successfully!");
-  //   } catch (error) {
-  //     alert("Failed to checkout.");
-  //   }
-  // };
-
   return (
     <div>
       <h1>{singleProduct.productName}</h1>

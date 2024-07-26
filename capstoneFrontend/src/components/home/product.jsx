@@ -19,7 +19,6 @@ const SingleProduct = () => {
   const cartId = useSelector(
     (state) => state.login.cart.id || state.register.cart
   );
-  console.log(cartId);
 
   if (isLoading) {
     return (

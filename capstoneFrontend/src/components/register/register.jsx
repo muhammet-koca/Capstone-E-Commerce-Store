@@ -13,6 +13,7 @@ export default function Register({ setEmail }) {
   const dispatch = useDispatch();
 
   const state = useSelector((state) => state);
+  // console.log(state);
 
   const [form, setForm] = useState({
     firstName: "",
@@ -40,10 +41,9 @@ export default function Register({ setEmail }) {
         const createUserCart = await createCart(responseJson.id);
         const cartId = JSON.parse(createUserCart.data);
         dispatch(setCart(cartId.id));
-        // const success = { ...responseJson, cart: cartId.id };
         // state.cart = cartId.id;
+        // console.log("Cart ID:", cartId);
         // console.log(state, "after");
-
         navigate("/");
       }
     } catch (error) {

@@ -6,10 +6,14 @@ import {
 } from "./cartSlice";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 export default function Cart() {
   const { id } = useParams();
   const navigate = useNavigate();
+  // const state = useSelector((state) => state);
+  // const cartId = state.register.cart || state.login.cart;
+  // console.log(cartId);
   const { data: cart = [], isSuccess, isLoading } = useGetCartQuery({ id });
   const [updateCart] = useUpdateCartMutation();
   const createCart = useCreateCartMutation();
@@ -23,6 +27,14 @@ export default function Cart() {
       </div>
     );
   }
+
+  // const handleGetCart = async () => {
+  //   try {
+  //     await getCart();
+  //   } catch (error) {
+
+  //   }
+  // }
 
   const handleSubmit = async (event, cartItemId) => {
     event.preventDefault();
