@@ -1,5 +1,4 @@
 const { bcrypt, prisma, jwt } = require("../share");
-// import { createCart } from "./cartQueries";
 
 const registerQuery = async ({
   firstName,
