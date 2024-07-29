@@ -35,7 +35,7 @@ route.get("/product/:id", getProductById); //get individual product(id) details 
 
 //admin only- add product, update, delete
 route.post("/product", authenticateToken, isAdmin, addProduct); //tested
-route.put("/product/:id", authenticateToken, isAdmin, updateProduct); //tested
+route.put("/updateProduct/:id", authenticateToken, isAdmin, updateProduct); //tested
 route.delete("/product/:id", authenticateToken, isAdmin, deleteProductById); //tested
 //admin only get all users and get user by ID
 route.get("/users", authenticateToken, isAdmin, getUsers); //tested
