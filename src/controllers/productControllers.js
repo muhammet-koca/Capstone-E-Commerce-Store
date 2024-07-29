@@ -4,6 +4,7 @@ const {
   addProductId,
   deleteProduct,
   adminUpdateProduct,
+  deleteCartItemById,
 } = require("../queries/productQueries");
 
 //get all products
@@ -57,6 +58,19 @@ const deleteProductById = async (req, res) => {
   }
 };
 
+const deleteCartItem = async (req, res) => {
+  try {
+    const cartItem = await deleteCartItemById(req.params.id);
+    if (!cartItem) {
+      return res.status(404).json({ error: "Cart item not found" });
+    }
+    res.status(200).json({ message: "Cart item deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to delete cart item" });
+  }
+};
+
 const updateProduct = async (req, res) => {
   try {
     const product = await adminUpdateProduct(
@@ -82,4 +96,5 @@ module.exports = {
   addProduct,
   deleteProductById,
   updateProduct,
+  deleteCartItem,
 };

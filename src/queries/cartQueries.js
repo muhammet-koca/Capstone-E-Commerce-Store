@@ -45,16 +45,6 @@ const addToCart = async (id, productsId) => {
   });
 };
 
-// const addToCart = async (cartId, productId) => {
-//   return await prisma.cartItems.create({
-//     data: {
-//       cartId,
-//       productId,
-//       quantity: 1,
-//     },
-//   });
-// };
-
 //UPDATE cartItems
 const updateCartItems = async (id, productsId, quantity) => {
   return await prisma.cartItems.update({

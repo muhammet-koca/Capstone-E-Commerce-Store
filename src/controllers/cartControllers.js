@@ -62,27 +62,6 @@ const addToCartById = async (req, res) => {
   }
 };
 
-// const addToCartById = async (req, res) => {
-//   try {
-//     const { productsId } = req.body;
-//     const cartId = req.params.id; // Assumed cart ID is passed as a parameter
-
-//     // Validate cartId and productsId
-//     if (!cartId || !productsId) {
-//       return res.status(400).send("Bad request: Missing parameters");
-//     }
-
-//     const product = await addToCart(cartId, productsId);
-//     if (!product) {
-//       return res.status(404).send("Product not found");
-//     }
-//     res.status(201).send(product);
-//   } catch (error) {
-//     console.error("Error adding to cart:", error);
-//     res.status(500).send("Failed to add to cart");
-//   }
-// };
-
 const updateItemQuantity = async (req, res) => {
   try {
     const updatedItem = await updateCartItems(
@@ -96,23 +75,6 @@ const updateItemQuantity = async (req, res) => {
     res.status(500).send("Failed to update cart item");
   }
 };
-
-// const emptyCartById = async (req, res) => {
-//   try {
-//     const cart = await emptyCart(
-//       req.params.id,
-//       req.body.cartItems,
-//       req.body.usersId
-//     );
-//     console.log(cart, "testcart");
-//     if (!cart) {
-//       return res.status(404).send("cart empty");
-//     }
-//     res.send(cart);
-//   } catch (error) {
-//     res.status(500).send("cart error");
-//   }
-// };
 
 const emptyCartById = async (req, res) => {
   console.log(req.params);

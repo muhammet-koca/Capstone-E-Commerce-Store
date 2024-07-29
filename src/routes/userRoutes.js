@@ -23,6 +23,7 @@ const {
   addProduct,
   deleteProductById,
   updateProduct,
+  deleteCartItem,
 } = require("../controllers/productControllers");
 
 const { authenticateToken, isAdmin } = require("../middleware/authMiddleware");
@@ -46,6 +47,7 @@ route.put("/user/:id", authenticateToken, updateUser); //only update self tested
 
 route.post("/cart", authenticateToken, createCartById); //create cart tested
 route.post("/cartItems/product/:id", authenticateToken, createCartItemsById); //tested
+route.delete("/cartItems/:id", authenticateToken, deleteCartItem);
 
 route.get("/getCart/:id", authenticateToken, getCartById); //tested
 
