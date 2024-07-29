@@ -4,15 +4,14 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 export default function Navigation() {
-  const sessionToken = window.sessionStorage.getItem("Token");
-  const sessionUser = window.sessionStorage.getItem("User");
-  const sessionCart = window.sessionStorage.getItem("Cart");
   const token = useSelector(
     (state) => state.login.token || state.register.token
   );
   const user = useSelector((state) => state.login.user || state.register.user);
+  const sessionToken = window.sessionStorage.getItem("Token");
+  const sessionUser = window.sessionStorage.getItem("User");
+  const sessionCart = window.sessionStorage.getItem("Cart");
   const navigate = useNavigate();
-  // const cart = useSelector((state) => state.register.cart);
 
   console.log("User:", sessionUser);
   console.log("Cart:", sessionCart);
@@ -20,6 +19,8 @@ export default function Navigation() {
   const handleLogout = async () => {
     try {
       sessionStorage.removeItem("Token");
+      sessionStorage.removeItem("User");
+      sessionStorage.removeItem("Cart");
       alert("Logged Out!");
       navigate("/");
     } catch (error) {

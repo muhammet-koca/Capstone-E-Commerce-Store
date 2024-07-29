@@ -99,6 +99,7 @@ export default function UpdateUser() {
             onChange={update}
             className="form-control"
             placeholder="Password"
+            required
           />
         </div>
         <button type="submit" className="btn btn-primary">

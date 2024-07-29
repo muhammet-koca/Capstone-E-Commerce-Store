@@ -53,4 +53,4 @@ export default registerSlice.reducer;
 
 export const { useRegisterMutation } = registerApi;
 
-export const { setCart } = registerSlice.actions;
+export const { setCart, setUser } = registerSlice.actions;
