@@ -36,50 +36,13 @@ const productApi = api.injectEndpoints({
       }),
       invalidatesTags: ["User"],
     }),
+
+    //get all users
+    getAllUsers: builder.query({
+      query: () => "/store/users",
+    }),
   }),
 });
-
-// const adminSlice = createSlice({
-//   name: "product",
-//   initialState: {
-//     user: {},
-//     token: null,
-//   },
-//   reducers: {
-//     setCart: (state, action) => {
-//       state.cart = action.payload;
-//     },
-//     setUser: (state, action) => {
-//       console.log("Setting user in login:", action.payload);
-//       state.user = action.payload;
-//     },
-//   },
-
-//   extraReducers: (builder) => {
-//     builder.addMatcher(
-//       productApi.endpoints.register.matchFulfilled,
-//       (state, { payload }) => {
-//         // const temp = JSON.parse(payload);
-//         // console.log("Register response", temp);
-//         // console.log(temp.cart);
-//         // state.token = temp.token;
-//         // state.user = temp;
-//         // state.id = temp.id;
-//         // state.cart = temp.cart;
-//         // window.sessionStorage.setItem("Token", temp.token);
-//         // window.sessionStorage.setItem("User", temp.id);
-//       }
-//     );
-//   },
-// });
-
-// export default adminSlice.reducer;
-
-// export const {
-//   useProductMutation,
-//   useDeleteProductMutation,
-//   useUpdateProductMutation,
-// } = productApi;
 
 const adminSlice = createSlice({
   name: "admin",
@@ -140,5 +103,6 @@ export const {
   useProductMutation,
   useDeleteProductMutation,
   useUpdateProductMutation,
+  useGetAllUsersQuery,
 } = productApi;
 export const { addProduct, removeProduct, updateProduct } = adminSlice.actions;

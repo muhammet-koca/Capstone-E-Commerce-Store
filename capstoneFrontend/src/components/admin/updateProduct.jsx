@@ -54,8 +54,7 @@ export default function UpdateProduct() {
   return (
     <div>
       <h1>
-        Update Product:{" "}
-        {product ? `${product.productName} ${product.image}` : "Loading..."}
+        Update Product: {product ? `${product.productName}` : "Loading..."}
       </h1>
       <form onSubmit={handleProduct}>
         <div className="form-group">

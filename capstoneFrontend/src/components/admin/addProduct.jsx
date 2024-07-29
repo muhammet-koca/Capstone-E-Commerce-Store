@@ -2,11 +2,10 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useProductMutation, useDeleteProductMutation } from "./adminSlice";
+import { useProductMutation } from "./adminSlice";
 
 export default function AddProduct() {
   const [createProduct] = useProductMutation();
-  const [deleteProduct] = useDeleteProductMutation();
   const navigate = useNavigate();
 
   const state = useSelector((state) => state);
@@ -24,15 +23,6 @@ export default function AddProduct() {
       ...prev,
       [e.target.name]: e.target.value,
     }));
-  };
-
-  const handleDeleteProduct = async (event, id) => {
-    event.preventDefault();
-    try {
-      const response = await deleteProduct({ id });
-    } catch (error) {
-      console.log("Delete Product error");
-    }
   };
 
   const submit = async (e) => {
@@ -84,7 +74,7 @@ export default function AddProduct() {
             name="price"
             value={form.price}
             onChange={update}
-            type="text"
+            type="number"
             className="form-control"
             placeholder="Price"
           />
@@ -102,12 +92,6 @@ export default function AddProduct() {
         </div>
         <button type="submit" className="btn btn-primary">
           Add Product
-        </button>
-        <button
-          onClick={(event) => handleDeleteProduct(event)}
-          className="btn btn-primary"
-        >
-          Delete Product
         </button>
       </form>
     </div>

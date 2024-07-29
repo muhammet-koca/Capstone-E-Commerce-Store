@@ -9,6 +9,8 @@ import { useState } from "react";
 import Navigation from "./components/home/Navigation";
 import AddProduct from "./components/admin/addProduct";
 import UpdateProduct from "./components/admin/updateProduct";
+import GetUsers from "./components/admin/adminUsers";
+import SingleUser from "./components/admin/singleUser";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -30,6 +32,9 @@ function App() {
             {/* <Route path="/home" element={<Home email={email} />} /> */}
             <Route path="/update/:id" element={<Update />} />
             <Route path="/product/" element={<AddProduct />} />
+            <Route path="/users/" element={<GetUsers />} />
+            <Route path="/user/:id" element={<SingleUser />} />
+
             <Route path="/updateProduct/:id" element={<UpdateProduct />} />
           </Route>
         </Routes>

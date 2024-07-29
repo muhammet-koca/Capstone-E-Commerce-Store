@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { api } from "../../app/api";
 import { useAddToCartMutation } from "../cart/cartSlice";
+import { useDeleteProductMutation } from "../admin/adminSlice";
 import "./product.css";
 
 const SingleProduct = () => {
@@ -14,6 +15,7 @@ const SingleProduct = () => {
     isLoading,
   } = useGetProductByIdQuery(id);
   const [addToCart] = useAddToCartMutation();
+  const [deleteProduct] = useDeleteProductMutation();
   const navigate = useNavigate();
   const sessionCart = window.sessionStorage.getItem("Cart");
 
@@ -42,6 +44,17 @@ const SingleProduct = () => {
     }
   };
 
+  const handleDeleteProduct = async (event, id) => {
+    event.preventDefault();
+    try {
+      const response = await deleteProduct({ id });
+      alert("Product deleted!");
+      navigate("/");
+    } catch (error) {
+      console.log("Delete Product error");
+    }
+  };
+
   return (
     <div className="single-product">
       <img src={singleProduct.image} alt={singleProduct.productName} />
@@ -57,6 +70,19 @@ const SingleProduct = () => {
           onClick={() => navigate("/")}
         >
           Back
+        </button>
+        <button
+          className="back-button"
+          type="button"
+          onClick={() => navigate(`/updateProduct/${id}`)}
+        >
+          Update Product
+        </button>
+        <button
+          onClick={(event) => handleDeleteProduct(event, id)}
+          className="btn btn-primary"
+        >
+          Delete Product
         </button>
       </div>
     </div>
