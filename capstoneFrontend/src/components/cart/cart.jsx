@@ -3,6 +3,7 @@ import {
   useUpdateCartMutation,
   useCreateCartMutation,
   useDeleteCartMutation,
+  useDeleteCartItemMutation,
 } from "./cartSlice";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -18,6 +19,7 @@ export default function Cart() {
   const [updateCart] = useUpdateCartMutation();
   const createCart = useCreateCartMutation();
   const [deleteCart] = useDeleteCartMutation();
+  const [deleteCartItem] = useDeleteCartItemMutation();
   const [cartItem, setCartItem] = useState({ id: null, quantity: 1 });
 
   if (isLoading) {
@@ -27,14 +29,6 @@ export default function Cart() {
       </div>
     );
   }
-
-  // const handleGetCart = async () => {
-  //   try {
-  //     await getCart();
-  //   } catch (error) {
-
-  //   }
-  // }
 
   const handleSubmit = async (event, cartItemId) => {
     event.preventDefault();
@@ -62,6 +56,16 @@ export default function Cart() {
       navigate("/");
     } catch (error) {
       console.log("Checkout error", error);
+    }
+  };
+
+  const removeCartItem = async (event, id) => {
+    event.preventDefault();
+    try {
+      const response = await deleteCartItem({ id });
+      alert("Product removed");
+    } catch (error) {
+      console.log("Product remove error");
     }
   };
 
@@ -98,6 +102,13 @@ export default function Cart() {
                 <div className="col-auto my-1">
                   <button type="submit" className="btn btn-primary">
                     Update Quantity
+                  </button>
+                  <button
+                    // onClick={removeCartItem()}
+                    onClick={(event) => removeCartItem(event, cartItem.id)}
+                    className="btn btn-primary"
+                  >
+                    Remove from Cart
                   </button>
                 </div>
               </div>

@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-// import Logout from "../logout/logout";
 import { useNavigate } from "react-router-dom";
 
 export default function Navigation() {
@@ -11,16 +10,19 @@ export default function Navigation() {
   const sessionToken = window.sessionStorage.getItem("Token");
   const sessionUser = window.sessionStorage.getItem("User");
   const sessionCart = window.sessionStorage.getItem("Cart");
+  const sessionAdmin = window.sessionStorage.getItem("isAdmin");
   const navigate = useNavigate();
 
   console.log("User:", sessionUser);
   console.log("Cart:", sessionCart);
+  console.log("isAdmin:", sessionAdmin);
 
   const handleLogout = async () => {
     try {
       sessionStorage.removeItem("Token");
       sessionStorage.removeItem("User");
       sessionStorage.removeItem("Cart");
+      sessionStorage.removeItem("isAdmin");
       alert("Logged Out!");
       navigate("/");
     } catch (error) {
@@ -66,25 +68,18 @@ export default function Navigation() {
                   Account
                 </Link>
               )}
-
               <Link to={`/getCart/${sessionCart}`} className="nav-link">
                 Cart
               </Link>
+
               <Link to={`/product`} className="nav-link">
                 Product
               </Link>
+
               <Link to={`/users`} className="nav-link">
                 Users
               </Link>
 
-              {/* {(token || sessionToken) && user && user.id && (
-                <Link
-                  to={`/getCart/${user.cart.id || cart.id}`}
-                  className="nav-link"
-                >
-                  Cart
-                </Link>
-              )} */}
               <button
                 type="button"
                 className="btn btn-danger"

@@ -57,6 +57,14 @@ const getCartApi = api.injectEndpoints({
       }),
       invalidateTags: ["User"],
     }),
+    deleteCartItem: builder.mutation({
+      query: ({ id }) => ({
+        url: `/store/cartItems/${id}`,
+        method: "DELETE",
+        responseHandler: (response) => response.text(),
+      }),
+      invalidatesTags: ["User"],
+    }),
   }),
 });
 
@@ -82,4 +90,5 @@ export const {
   useUpdateCartMutation,
   useCreateCartMutation,
   useAddToCartMutation,
+  useDeleteCartItemMutation,
 } = getCartApi;

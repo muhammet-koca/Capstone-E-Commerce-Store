@@ -31,7 +31,7 @@ function storeToken(state, { payload }) {
   // state.cart = temp.token.cart.id;
   console.log(temp.token.cart.id);
   window.sessionStorage.setItem("isAdmin", temp.token.isAdmin);
-  window.sessionStorage.setItem(TOKEN, temp.token);
+  window.sessionStorage.setItem(TOKEN, temp.token.token);
   window.sessionStorage.setItem("User", temp.token.id);
   window.sessionStorage.setItem("Cart", temp.token.cart.id);
 }
