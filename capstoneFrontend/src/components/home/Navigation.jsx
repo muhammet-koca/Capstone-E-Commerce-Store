@@ -70,6 +70,9 @@ export default function Navigation() {
               <Link to={`/getCart/${sessionCart}`} className="nav-link">
                 Cart
               </Link>
+              <Link to={`/product`} className="nav-link">
+                Product
+              </Link>
               {/* {(token || sessionToken) && user && user.id && (
                 <Link
                   to={`/getCart/${user.cart.id || cart.id}`}

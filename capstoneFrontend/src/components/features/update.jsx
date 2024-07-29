@@ -93,17 +93,17 @@ export default function UpdateUser() {
         <div className="form-group">
           <label>Password</label>
           <input
-            type="password"
             name="password"
             value={form.password}
             onChange={update}
+            type="password"
             className="form-control"
             placeholder="Password"
             required
           />
         </div>
         <button type="submit" className="btn btn-primary">
-          Submit
+          Update User
         </button>
       </form>
     </div>

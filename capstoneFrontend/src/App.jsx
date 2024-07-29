@@ -7,6 +7,8 @@ import Register from "./components/register/register";
 import Cart from "./components/cart/cart";
 import { useState } from "react";
 import Navigation from "./components/home/Navigation";
+import AddProduct from "./components/admin/addProduct";
+import UpdateProduct from "./components/admin/updateProduct";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -27,6 +29,8 @@ function App() {
             <Route path="/getCart/:id" element={<Cart />} />
             {/* <Route path="/home" element={<Home email={email} />} /> */}
             <Route path="/update/:id" element={<Update />} />
+            <Route path="/product/" element={<AddProduct />} />
+            <Route path="/updateProduct/:id" element={<UpdateProduct />} />
           </Route>
         </Routes>
       </Router>
