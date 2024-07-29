@@ -63,9 +63,15 @@ const loginUser = async (email, password) => {
       isAdmin: user.isAdmin,
       cart: user.cart,
     },
+
     process.env.WEB_TOKEN
   );
-  const updatedToken = { token, id: user.id, cart: user.cart };
+  const updatedToken = {
+    token,
+    id: user.id,
+    cart: user.cart,
+    isAdmin: user.isAdmin,
+  };
   return updatedToken;
 };
 

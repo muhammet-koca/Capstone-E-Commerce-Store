@@ -12,20 +12,13 @@ const getProduct = async (id) => {
   });
 };
 
-const addProductId = async ({
-  productName,
-  image,
-  price,
-  publish,
-  cartItems,
-}) => {
+const addProductId = async ({ productName, image, price, publish }) => {
   const product = await prisma.products.create({
     data: {
       productName,
       image,
-      price,
-      publish,
-      cartItems,
+      price: parseFloat(price),
+      publish: publish || true,
     },
   });
   return product;
@@ -45,8 +38,8 @@ const adminUpdateProduct = async (id, productName, image, price, publish) => {
     data: {
       productName,
       image,
-      price,
-      publish,
+      price: parseFloat(price),
+      publish: publish || true,
     },
   });
 };
