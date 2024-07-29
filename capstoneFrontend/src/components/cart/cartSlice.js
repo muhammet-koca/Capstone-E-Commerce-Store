@@ -14,7 +14,7 @@ const getCartApi = api.injectEndpoints({
     deleteCart: builder.mutation({
       query: ({ id }) => ({
         url: `/store/checkout/${id}`,
-        method: "PUT",
+        method: "DELETE",
         responseHandler: (response) => response.text(),
       }),
       invalidatesTags: ["User"],
