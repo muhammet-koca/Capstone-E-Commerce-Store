@@ -5,6 +5,7 @@ const {
   deleteUserById,
   updateUserById,
   getSingleUser,
+  promoteUserById,
 } = require("../queries/userQueries");
 
 const register = async (req, res) => {
@@ -70,6 +71,26 @@ const updateUser = async (req, res) => {
   }
 };
 
+const promoteUser = async (req, res) => {
+  try {
+    const user = await promoteUserById(
+      req.params.id,
+      req.body.firstName,
+      req.body.lastName,
+      req.body.email,
+      req.body.password,
+      req.body.isAdmin
+    );
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    res.status(200).json(user);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to update user" });
+  }
+};
+
 const getUserById = async (req, res) => {
   try {
     const user = await getSingleUser(req.params.id);
@@ -90,4 +111,5 @@ module.exports = {
   deleteUser,
   updateUser,
   getUserById,
+  promoteUser
 };

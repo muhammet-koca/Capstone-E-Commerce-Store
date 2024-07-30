@@ -108,6 +108,27 @@ const updateUserById = async (
   });
 };
 
+const promoteUserById = async (
+  id,
+  firstName,
+  lastName,
+  email,
+  password,
+  isAdmin
+) => {
+  const hashPassword = await bcrypt.hash(password, 10);
+  return await prisma.users.update({
+    where: { id },
+    data: {
+      firstName,
+      lastName,
+      email,
+      password: hashPassword,
+      isAdmin,
+    },
+  });
+};
+
 const getSingleUser = async (id) => {
   return await prisma.users.findUnique({
     where: {
@@ -123,4 +144,5 @@ module.exports = {
   deleteUserById,
   updateUserById,
   getSingleUser,
+  promoteUserById
 };

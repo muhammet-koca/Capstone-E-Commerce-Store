@@ -6,6 +6,7 @@ const {
   deleteUser,
   updateUser,
   getUserById,
+  promoteUser,
 } = require("../controllers/userControllers");
 
 const {
@@ -42,8 +43,9 @@ route.delete("/product/:id", authenticateToken, isAdmin, deleteProductById); //t
 route.get("/users", authenticateToken, isAdmin, getUsers); //tested
 
 route.get("/user/:id", authenticateToken, getUserById); //only get account details tested
-route.delete("/user/:id", authenticateToken, deleteUser); //only delete self tested
+route.delete("/deleteuser/:id", authenticateToken, deleteUser); //only delete self tested
 route.put("/user/:id", authenticateToken, updateUser); //only update self tested
+route.put("/update/user/:id", authenticateToken, promoteUser);
 
 route.post("/cart", authenticateToken, createCartById); //create cart tested
 route.post("/cartItems/product/:id", authenticateToken, createCartItemsById); //tested
