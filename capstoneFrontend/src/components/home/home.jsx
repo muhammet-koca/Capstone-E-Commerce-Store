@@ -8,7 +8,6 @@ import { useSelector } from "react-redux";
 
 export default function Home() {
   const { data: products = [], isSuccess, isLoading } = useGetProductQuery();
-  // const { getUserById } = useGetUserQuery();
 
   useEffect(() => {
     const userId = () => {};
@@ -44,17 +43,3 @@ export default function Home() {
     </div>
   );
 }
-
-//   const handleDelete = async (event, id, userEmail) => {
-//     event.preventDefault();
-//     try {
-//       if (email !== userEmail) {
-//         const response = await deleteUser({ id });
-//         getUser((users) => users.filter((user) => user.id !== id));
-//       } else {
-//         return alert("cannot delete logged in user");
-//       }
-//     } catch (error) {
-//       console.log("Delete error");
-//     }
-//   };

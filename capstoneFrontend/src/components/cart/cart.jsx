@@ -7,20 +7,17 @@ import {
 } from "./cartSlice";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useSelector } from "react-redux";
 
 export default function Cart() {
   const { id } = useParams();
   const navigate = useNavigate();
-  // const state = useSelector((state) => state);
-  // const cartId = state.register.cart || state.login.cart;
-  // console.log(cartId);
   const { data: cart = [], isSuccess, isLoading } = useGetCartQuery({ id });
   const [updateCart] = useUpdateCartMutation();
   const createCart = useCreateCartMutation();
   const [deleteCart] = useDeleteCartMutation();
   const [deleteCartItem] = useDeleteCartItemMutation();
-  const [cartItem, setCartItem] = useState({ id: null, quantity: 1 });
+  // const [cartItem, setCartItem] = useState({ id: null, quantity: 1 });
+  const [quantities, setQuantities] = useState({});
 
   if (isLoading) {
     return (
@@ -38,7 +35,7 @@ export default function Cart() {
       }
       const response = await updateCart({
         id: cartItemId,
-        form: cartItem,
+        form: { quantity: quantities[cartItemId] || 1 },
       }).unwrap();
       console.log(response);
     } catch (error) {
@@ -47,7 +44,10 @@ export default function Cart() {
   };
 
   const handleSelectChange = (event, cartItemId) => {
-    setCartItem({ id: cartItemId, quantity: Number(event.target.value) });
+    setQuantities((prev) => ({
+      ...prev,
+      [cartItemId]: Number(event.target.value),
+    }));
   };
 
   const handleCheckout = async () => {
@@ -72,27 +72,27 @@ export default function Cart() {
   return (
     <div>
       {isSuccess &&
-        cart.cartItems.map((cartItem) => (
-          <div className="product" key={cartItem.id}>
+        cart.cartItems.map((item) => (
+          <div className="product" key={item.id}>
             <p>
-              <Link to={`/product/cartitem/${cartItem.id}`}>
-                {cartItem.quantity}
+              <Link to={`/product/cartitem/${item.id}`}>
+                {item.productName}
               </Link>
             </p>
-            <form onSubmit={(event) => handleSubmit(event, cartItem.id)}>
+            <form onSubmit={(event) => handleSubmit(event, item.id)}>
               <div className="form-row align-items-center">
                 <div className="col-auto my-1">
                   <label
                     className="mr-sm-2 sr-only"
-                    htmlFor="inlineFormCustomSelect"
+                    htmlFor={`quantity-select-${item.id}`}
                   >
                     Quantity
                   </label>
                   <select
                     className="custom-select mr-sm-2"
-                    id="inlineFormCustomSelect"
-                    onChange={(e) => handleSelectChange(e, cartItem.id)}
-                    value={cartItem.quantity}
+                    id={`quantity-select-${item.id}`}
+                    onChange={(e) => handleSelectChange(e, item.id)}
+                    value={quantities[item.id] || 1}
                   >
                     <option value="1">One</option>
                     <option value="2">Two</option>
@@ -104,8 +104,7 @@ export default function Cart() {
                     Update Quantity
                   </button>
                   <button
-                    // onClick={removeCartItem()}
-                    onClick={(event) => removeCartItem(event, cartItem.id)}
+                    onClick={(event) => removeCartItem(event, item.id)}
                     className="btn btn-primary"
                   >
                     Remove from Cart

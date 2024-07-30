@@ -27,7 +27,7 @@ const SingleUser = () => {
       <h1>
         {singleUser.firstName} {singleUser.lastName}
       </h1>
-      <p className="price">email:{singleUser.email}</p>
+      <p className="price">Email:{singleUser.email}</p>
 
       <div className="button-container">
         <button

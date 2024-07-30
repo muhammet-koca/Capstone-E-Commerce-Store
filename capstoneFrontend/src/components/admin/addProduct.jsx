@@ -9,7 +9,6 @@ export default function AddProduct() {
   const navigate = useNavigate();
 
   const state = useSelector((state) => state);
-  console.log(state);
 
   const [form, setForm] = useState({
     productName: "",
