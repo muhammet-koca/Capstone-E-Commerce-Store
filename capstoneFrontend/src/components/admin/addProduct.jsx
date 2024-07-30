@@ -45,7 +45,7 @@ export default function AddProduct() {
   return (
     <div>
       <form onSubmit={submit}>
-        <div className="form-group">
+        <div className="form">
           <label>*Product Name</label>
           <input
             name="productName"

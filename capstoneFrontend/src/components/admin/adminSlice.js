@@ -20,7 +20,14 @@ const productApi = api.injectEndpoints({
       }),
       invalidatesTags: ["User"],
     }),
-
+    deleteUser: builder.mutation({
+      query: ({ id }) => ({
+        url: `/store/deleteuser/${id}`,
+        method: "DELETE",
+        responseHandler: (response) => response.text(),
+      }),
+      invalidatesTags: ["User"],
+    }),
     // update user
     updateProduct: builder.mutation({
       query: ({ id, form }) => ({
@@ -36,7 +43,21 @@ const productApi = api.injectEndpoints({
       }),
       invalidatesTags: ["User"],
     }),
-
+    promoteUser: builder.mutation({
+      query: ({ id, form }) => ({
+        url: `/store/update/user/${id}`,
+        method: "PUT",
+        body: {
+          firstName: form.firstName,
+          lastName: form.lastName,
+          email: form.email,
+          password: form.password,
+          isAdmin: form.isAdmin,
+        },
+        responseHandler: (response) => response.text(),
+      }),
+      invalidatesTags: ["User"],
+    }),
     //get all users
     getAllUsers: builder.query({
       query: () => "/store/users",
@@ -104,5 +125,7 @@ export const {
   useDeleteProductMutation,
   useUpdateProductMutation,
   useGetAllUsersQuery,
+  useDeleteUserMutation,
+  usePromoteUserMutation,
 } = productApi;
 export const { addProduct, removeProduct, updateProduct } = adminSlice.actions;

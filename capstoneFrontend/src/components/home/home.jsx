@@ -1,10 +1,8 @@
+import React from "react";
 import { useGetProductQuery } from "./homeSlice";
-import { useGetUserQuery } from "../features/updateSlice";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./home.css";
-import { useSelector } from "react-redux";
 
 export default function Home() {
   const [sortOption, setSortOption] = useState("name-asc");

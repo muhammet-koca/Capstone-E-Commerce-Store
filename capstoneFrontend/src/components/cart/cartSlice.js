@@ -26,12 +26,6 @@ const getCartApi = api.injectEndpoints({
         url: `/store/product/cartItem/${id}`,
         method: "PUT",
         body: form,
-        // {
-        //   product: form.product,
-        //   quantity: form.quantity,
-
-        // },
-        // responseHandler: (response) => response.text(),
       }),
       invalidatesTags: ["User"],
     }),

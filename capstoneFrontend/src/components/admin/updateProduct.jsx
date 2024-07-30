@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useUpdateProductMutation } from "./adminSlice";
 import { useGetProductByIdQuery } from "../home/homeSlice";
+import React from "react";
 
 export default function UpdateProduct() {
   const { id } = useParams();

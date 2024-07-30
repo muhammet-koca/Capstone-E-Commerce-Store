@@ -1,9 +1,7 @@
 import { useGetUserQuery } from "../features/updateSlice";
-import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { api } from "../../app/api";
 import "../home/product.css";
+import React from "react";
 
 const SingleUser = () => {
   const { id } = useParams();
@@ -36,6 +34,13 @@ const SingleUser = () => {
           onClick={() => navigate("/users")}
         >
           Back
+        </button>
+        <button
+          className="back-button"
+          type="button"
+          onClick={() => navigate(`/update/user/${id}`)}
+        >
+          Update User
         </button>
       </div>
     </div>

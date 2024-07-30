@@ -1,3 +1,4 @@
+import React from "react";
 import Login from "./components/login/login";
 import Protected from "./components/home/protected";
 import Update from "./components/features/update";
@@ -11,7 +12,7 @@ import AddProduct from "./components/admin/addProduct";
 import UpdateProduct from "./components/admin/updateProduct";
 import GetUsers from "./components/admin/adminUsers";
 import SingleUser from "./components/admin/singleUser";
-import AdminProtected from "./components/admin/adminProtected";
+import PromoteUser from "./components/admin/promoteUser";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -35,6 +36,7 @@ function App() {
             <Route path="/users/" element={<GetUsers />} />
             <Route path="/user/:id" element={<SingleUser />} />
             <Route path="/updateProduct/:id" element={<UpdateProduct />} />
+            <Route path="/update/user/:id" element={<PromoteUser />} />
           </Route>
         </Routes>
       </Router>

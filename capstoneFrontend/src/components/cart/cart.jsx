@@ -7,6 +7,7 @@ import {
 } from "./cartSlice";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import React from "react";
 
 export default function Cart() {
   const { id } = useParams();

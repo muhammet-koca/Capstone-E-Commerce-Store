@@ -1,8 +1,6 @@
+import React from "react";
 import { useGetProductByIdQuery } from "./homeSlice";
-import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { api } from "../../app/api";
 import { useAddToCartMutation } from "../cart/cartSlice";
 import { useDeleteProductMutation } from "../admin/adminSlice";
 import "./product.css";

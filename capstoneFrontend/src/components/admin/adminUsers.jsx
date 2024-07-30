@@ -1,10 +1,8 @@
 import { useGetAllUsersQuery } from "./adminSlice";
-// import { useGetUserQuery } from "../features/updateSlice";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../home/home.css";
-import { useSelector } from "react-redux";
+import React from "react";
 
 export default function GetUsers() {
   const { data: users = [], isSuccess, isLoading } = useGetAllUsersQuery();

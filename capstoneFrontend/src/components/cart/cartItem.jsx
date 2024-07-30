@@ -1,8 +1,6 @@
-import { useUpdateCartMutation } from "./";
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { api } from "../../app/api";
+import { useParams } from "react-router-dom";
 import { useGetProductByIdQuery } from "../home/homeSlice";
+import React from "react";
 
 const SingleProduct = () => {
   const { id } = useParams();

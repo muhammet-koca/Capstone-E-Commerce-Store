@@ -18,14 +18,14 @@ const userApi = api.injectEndpoints({
     }),
 
     // delete user
-    deleteUser: builder.mutation({
-      query: ({ id }) => ({
-        url: `/store/user/${id}`,
-        method: "DELETE",
-        responseHandler: (response) => response.text(),
-      }),
-      invalidatesTags: ["User"],
-    }),
+    // deleteUser: builder.mutation({
+    //   query: ({ id }) => ({
+    //     url: `/store/user/${id}`,
+    //     method: "DELETE",
+    //     responseHandler: (response) => response.text(),
+    //   }),
+    //   invalidatesTags: ["User"],
+    // }),
 
     // update user
     updateUser: builder.mutation({
@@ -61,5 +61,4 @@ const userSlice = createSlice({
 
 export default userSlice.reducer;
 
-export const { useGetUserQuery, useDeleteUserMutation, useUpdateUserMutation } =
-  userApi;
+export const { useGetUserQuery, useUpdateUserMutation } = userApi;

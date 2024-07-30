@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useLoginMutation } from "../login/loginSlice";
 import { useNavigate } from "react-router-dom";
 import "./login.css";
+import React from "react";
 
 const Login = ({ setEmail }) => {
   const [inputFields, setInputFields] = useState({
