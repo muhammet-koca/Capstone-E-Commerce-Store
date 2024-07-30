@@ -11,6 +11,7 @@ import AddProduct from "./components/admin/addProduct";
 import UpdateProduct from "./components/admin/updateProduct";
 import GetUsers from "./components/admin/adminUsers";
 import SingleUser from "./components/admin/singleUser";
+import AdminProtected from "./components/admin/adminProtected";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -29,12 +30,10 @@ function App() {
           <Route path="/register" element={<Register setEmail={setEmail} />} />
           <Route element={<Protected />}>
             <Route path="/getCart/:id" element={<Cart />} />
-            {/* <Route path="/home" element={<Home email={email} />} /> */}
             <Route path="/update/:id" element={<Update />} />
             <Route path="/product/" element={<AddProduct />} />
             <Route path="/users/" element={<GetUsers />} />
             <Route path="/user/:id" element={<SingleUser />} />
-
             <Route path="/updateProduct/:id" element={<UpdateProduct />} />
           </Route>
         </Routes>

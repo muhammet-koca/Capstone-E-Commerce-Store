@@ -18,10 +18,7 @@ const SingleProduct = () => {
   const [deleteProduct] = useDeleteProductMutation();
   const navigate = useNavigate();
   const sessionCart = window.sessionStorage.getItem("Cart");
-
-  // const cartId = useSelector(
-  //   (state) => state.login.cart.id || state.register.cart
-  // );
+  const sessionIsAdmin = window.sessionStorage.getItem("isAdmin");
 
   if (isLoading) {
     return (
@@ -55,38 +52,60 @@ const SingleProduct = () => {
     }
   };
 
-  return (
-    <div className="single-product">
-      <img src={singleProduct.image} alt={singleProduct.productName} />
-      <h1>{singleProduct.productName}</h1>
-      <p className="price">${singleProduct.price}</p>
-      <button type="button" onClick={handleAddToCart}>
-        Add to Cart
-      </button>
-      <div className="button-container">
-        <button
-          className="back-button"
-          type="button"
-          onClick={() => navigate("/")}
-        >
-          Back
+  if (sessionIsAdmin === "true") {
+    return (
+      <div className="single-product">
+        <img src={singleProduct.image} alt={singleProduct.productName} />
+        <h1>{singleProduct.productName}</h1>
+        <p className="price">${singleProduct.price}</p>
+        <button type="button" onClick={handleAddToCart}>
+          Add to Cart
         </button>
-        <button
-          className="back-button"
-          type="button"
-          onClick={() => navigate(`/updateProduct/${id}`)}
-        >
-          Update Product
-        </button>
-        <button
-          onClick={(event) => handleDeleteProduct(event, id)}
-          className="btn btn-primary"
-        >
-          Delete Product
-        </button>
-      </div>
-    </div>
-  );
-};
+        <div className="button-container">
+          <button
+            className="back-button"
+            type="button"
+            onClick={() => navigate("/")}
+          >
+            Back
+          </button>
 
+          <button
+            className="back-button"
+            type="button"
+            onClick={() => navigate(`/updateProduct/${id}`)}
+          >
+            Update Product
+          </button>
+          <button
+            onClick={(event) => handleDeleteProduct(event, id)}
+            className="btn btn-primary"
+          >
+            Delete Product
+          </button>
+        </div>
+      </div>
+    );
+  } else {
+    return (
+      <div className="single-product">
+        <img src={singleProduct.image} alt={singleProduct.productName} />
+        <h1>{singleProduct.productName}</h1>
+        <p className="price">${singleProduct.price}</p>
+        <button type="button" onClick={handleAddToCart}>
+          Add to Cart
+        </button>
+        <div className="button-container">
+          <button
+            className="back-button"
+            type="button"
+            onClick={() => navigate("/")}
+          >
+            Back
+          </button>
+        </div>
+      </div>
+    );
+  }
+};
 export default SingleProduct;
