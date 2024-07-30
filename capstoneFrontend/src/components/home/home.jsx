@@ -9,11 +9,24 @@ import { useSelector } from "react-redux";
 export default function Home() {
   const [sortOption, setSortOption] = useState("name-asc");
   const { data: products = [], isSuccess, isLoading } = useGetProductQuery();
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
 
   useEffect(() => {
     const userId = () => {};
     userId();
   }, []);
+
+  const filterProducts = (searchInput) => {
+    const filteredProducts = products.filter((item) =>
+      item.productName.toLowerCase().includes(searchInput.toLowerCase())
+    );
+    setFilteredProducts(filteredProducts);
+  };
+
+  useEffect(() => {
+    filterProducts(searchInput);
+  }, [searchInput, products]);
 
   if (isLoading) {
     return (
@@ -22,6 +35,7 @@ export default function Home() {
       </div>
     );
   }
+
 
   const handleSortChange = (event) => {
     setSortOption(event.target.value);
@@ -53,6 +67,26 @@ export default function Home() {
       <div className="product-list">
         {isSuccess &&
           sortedProducts.map((product) => (
+
+  const handleChange = (e) => {
+    setSearchInput(e.target.value);
+  };
+
+  return (
+    <div className="returning">
+      <div className="search-container">
+        <input
+          type="text"
+          placeholder="Search products..."
+          value={searchInput}
+          onChange={handleChange}
+          className="search-bar"
+        />
+      </div>
+      <div className="product-list">
+        {isSuccess &&
+          filteredProducts.map((product) => (
+
             <div className="product-card" key={product.id}>
               <Link to={`/product/${product.id}`} className="product-link">
                 <img
