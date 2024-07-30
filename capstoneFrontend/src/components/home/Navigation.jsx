@@ -124,12 +124,12 @@ export default function Navigation() {
                     Login
                   </Link>
                 )}
-                {(token || sessionToken) && user && user.id && (
-                  <Link to={`/update/${user.id}`} className="nav-link">
+                {(token || sessionToken) && sessionUser && (
+                  <Link to={`/update/${sessionUser}`} className="nav-link">
                     Account
                   </Link>
                 )}
-                {(token || sessionToken) && user && user.id && (
+                {(token || sessionToken) && sessionUser && (
                   <Link to={`/getCart/${sessionCart}`} className="nav-link">
                     Cart
                   </Link>
