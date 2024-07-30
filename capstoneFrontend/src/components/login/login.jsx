@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useLoginMutation } from "../login/loginSlice";
 import { useNavigate } from "react-router-dom";
+import "./login.css";
 
 const Login = ({ setEmail }) => {
   const [inputFields, setInputFields] = useState({
@@ -34,17 +35,35 @@ const Login = ({ setEmail }) => {
   };
 
   return (
-    <div id="form-group">
+    <div>
       <h2>Login</h2>
-      <form onSubmit={handleSubmit} id="form-group">
-        <label>
-          Email: <input name="email" type="email" onChange={handleChange} />
+      <form onSubmit={handleSubmit} className="form">
+        <label className="email">
+          *Email Address:{" "}
+          <input
+            name="email"
+            type="email"
+            placeholder="Email"
+            onChange={handleChange}
+            required
+            className="input"
+          />
         </label>
-        <label>
-          Password:{" "}
-          <input name="password" type="password" onChange={handleChange} />
+        <label className="password">
+          *Password:{" "}
+          <input
+            name="password"
+            type="password"
+            placeholder="Password"
+            onChange={handleChange}
+            required
+            className="input"
+          />
         </label>
-        <button type="submit">Login</button>
+        <p>* Indicates a required field.</p>
+        <button className="button-confirm" type="submit">
+          Login
+        </button>
         <h3 id="successful"></h3>
       </form>
     </div>

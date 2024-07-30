@@ -5,6 +5,7 @@ import { useRegisterMutation } from "../register/registerSlice";
 import { useCreateCartMutation } from "../cart/cartSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { setCart } from "../register/registerSlice";
+import "../login/login.css";
 
 export default function Register({ setEmail }) {
   const [registerUser] = useRegisterMutation();
@@ -54,52 +55,57 @@ export default function Register({ setEmail }) {
 
   return (
     <div>
-      <form onSubmit={submit}>
-        <div className="form-group">
-          <label>First Name</label>
+      <form onSubmit={submit} className="form">
+        <div>
+          <label>*First Name:</label>
           <input
             name="firstName"
             value={form.firstName}
             onChange={update}
             type="text"
-            className="form-control"
             placeholder="First Name"
+            required
+            className="input"
           />
         </div>
-        <div className="form-group">
-          <label>Last Name</label>
+        <div>
+          <label>*Last Name:</label>
           <input
             name="lastName"
             value={form.lastName}
             onChange={update}
             type="text"
-            className="form-control"
-            placeholder="last Name"
+            placeholder="Last Name"
+            required
+            className="input"
           />
         </div>
-        <div className="form-group">
-          <label>Email address</label>
+        <div>
+          <label>*Email Address:</label>
           <input
             name="email"
             value={form.email}
             onChange={update}
             type="email"
-            className="form-control"
-            placeholder="Enter email"
+            placeholder="Email Address"
+            required
+            className="input"
           />
         </div>
-        <div className="form-group">
-          <label>Password</label>
+        <div>
+          <label>*Password:</label>
           <input
             type="password"
             name="password"
             value={form.password}
             onChange={update}
-            className="form-control"
             placeholder="Password"
+            required
+            className="input"
           />
         </div>
-        <button type="submit" className="btn btn-primary">
+        <p>* Indicates a required field.</p>
+        <button type="submit" className="button-confirm">
           Register
         </button>
       </form>

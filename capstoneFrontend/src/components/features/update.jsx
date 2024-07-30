@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useGetUserQuery, useUpdateUserMutation } from "./updateSlice";
+import "../login/login.css";
 
 export default function UpdateUser() {
   const { id } = useParams();
@@ -51,58 +52,60 @@ export default function UpdateUser() {
   };
 
   return (
-    <div>
+    <div id="form-group">
       <h1>
         Update User:{" "}
         {user ? `${user.firstName} ${user.lastName}` : "Loading..."}
       </h1>
-      <form onSubmit={handleUser}>
-        <div className="form-group">
+      <form onSubmit={handleUser} className="form">
+        <div>
           <label>First Name</label>
           <input
             name="firstName"
             value={form.firstName}
             onChange={update}
             type="text"
-            className="form-control"
             placeholder="First Name"
+            className="input"
           />
         </div>
-        <div className="form-group">
+        <div>
           <label>Last Name</label>
           <input
             name="lastName"
             value={form.lastName}
             onChange={update}
             type="text"
-            className="form-control"
             placeholder="Last Name"
+            className="input"
           />
         </div>
-        <div className="form-group">
-          <label>Email address</label>
+        <div>
+          <label>*Email Address</label>
           <input
             name="email"
             value={form.email}
             onChange={update}
             type="email"
-            className="form-control"
             placeholder="Enter email"
+            required
+            className="input"
           />
         </div>
-        <div className="form-group">
-          <label>Password</label>
+        <div>
+          <label>*Password</label>
           <input
             name="password"
             value={form.password}
             onChange={update}
             type="password"
-            className="form-control"
             placeholder="Password"
             required
+            className="input"
           />
         </div>
-        <button type="submit" className="btn btn-primary">
+        <p>* Indicates a required field.</p>
+        <button type="submit" className="button-confirm">
           Update User
         </button>
       </form>

@@ -58,7 +58,7 @@ export default function UpdateProduct() {
       </h1>
       <form onSubmit={handleProduct}>
         <div className="form-group">
-          <label>Product Name</label>
+          <label>*Product Name</label>
           <input
             name="productName"
             value={form.productName}
@@ -66,6 +66,7 @@ export default function UpdateProduct() {
             type="text"
             className="form-control"
             placeholder="Product Name"
+            required
           />
         </div>
         <div className="form-group">
@@ -80,7 +81,7 @@ export default function UpdateProduct() {
           />
         </div>
         <div className="form-group">
-          <label>Price</label>
+          <label>*Price</label>
           <input
             name="price"
             value={form.price}
@@ -88,6 +89,7 @@ export default function UpdateProduct() {
             type="float"
             className="form-control"
             placeholder="Price"
+            required
           />
         </div>
         <div className="form-group">
@@ -101,6 +103,7 @@ export default function UpdateProduct() {
             placeholder="Publish"
           />
         </div>
+        <p>* Indicates a required field.</p>
         <button type="submit" className="btn btn-primary">
           Update Product
         </button>

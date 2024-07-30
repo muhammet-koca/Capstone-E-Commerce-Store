@@ -30,6 +30,7 @@ export default function Navigation() {
       console.log("Logout error", error);
     }
   };
+
   if (sessionIsAdmin === "true") {
     return (
       <div>
@@ -79,14 +80,15 @@ export default function Navigation() {
                 <Link to={`/users`} className="nav-link">
                   Users
                 </Link>
-
-                <button
-                  type="button"
-                  className="btn btn-danger"
-                  onClick={handleLogout}
-                >
-                  Logout
-                </button>
+                {sessionUser && (
+                  <button
+                    type="button"
+                    className="btn btn-danger"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </button>
+                )}
               </div>
             </div>
           </div>
@@ -134,14 +136,15 @@ export default function Navigation() {
                     Cart
                   </Link>
                 )}
-
-                <button
-                  type="button"
-                  className="btn btn-danger"
-                  onClick={handleLogout}
-                >
-                  Logout
-                </button>
+                {sessionUser && (
+                  <button
+                    type="button"
+                    className="btn btn-danger"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </button>
+                )}
               </div>
             </div>
           </div>
