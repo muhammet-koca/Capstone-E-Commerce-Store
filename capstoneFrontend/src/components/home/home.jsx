@@ -9,39 +9,13 @@ import { useSelector } from "react-redux";
 export default function Home() {
   const [sortOption, setSortOption] = useState("name-asc");
   const { data: products = [], isSuccess, isLoading } = useGetProductQuery();
-  const [filteredProducts, setFilteredProducts] = useState([]);
   const [searchInput, setSearchInput] = useState("");
 
-  useEffect(() => {
-    const userId = () => {};
-    userId();
-  }, []);
+  const filteredProducts = products.filter((item) =>
+    item.productName.toLowerCase().includes(searchInput.toLowerCase())
+  );
 
-  const filterProducts = (searchInput) => {
-    const filteredProducts = products.filter((item) =>
-      item.productName.toLowerCase().includes(searchInput.toLowerCase())
-    );
-    setFilteredProducts(filteredProducts);
-  };
-
-  useEffect(() => {
-    filterProducts(searchInput);
-  }, [searchInput, products]);
-
-  if (isLoading) {
-    return (
-      <div className="loading">
-        <h2>Loading...</h2>
-      </div>
-    );
-  }
-
-
-  const handleSortChange = (event) => {
-    setSortOption(event.target.value);
-  };
-
-  const sortedProducts = [...products].sort((a, b) => {
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
     if (sortOption.startsWith("price")) {
       const priceComparison = a.price - b.price;
       return sortOption === "price-asc" ? priceComparison : -priceComparison;
@@ -52,8 +26,34 @@ export default function Home() {
     return 0;
   });
 
+  const handleSortChange = (event) => {
+    setSortOption(event.target.value);
+  };
+
+  const handleChange = (e) => {
+    setSearchInput(e.target.value);
+  };
+
+  if (isLoading) {
+    return (
+      <div className="loading">
+        <h2>Loading...</h2>
+      </div>
+    );
+  }
+
   return (
     <div>
+      <div className="search-container">
+        <input
+          type="text"
+          placeholder="Search products..."
+          value={searchInput}
+          onChange={handleChange}
+          className="search-bar"
+        />
+      </div>
+
       <div className="sort-options">
         <label htmlFor="sort-select">Sort by:</label>
         <select id="sort-select" value={sortOption} onChange={handleSortChange}>
@@ -67,26 +67,6 @@ export default function Home() {
       <div className="product-list">
         {isSuccess &&
           sortedProducts.map((product) => (
-
-  const handleChange = (e) => {
-    setSearchInput(e.target.value);
-  };
-
-  return (
-    <div className="returning">
-      <div className="search-container">
-        <input
-          type="text"
-          placeholder="Search products..."
-          value={searchInput}
-          onChange={handleChange}
-          className="search-bar"
-        />
-      </div>
-      <div className="product-list">
-        {isSuccess &&
-          filteredProducts.map((product) => (
-
             <div className="product-card" key={product.id}>
               <Link to={`/product/${product.id}`} className="product-link">
                 <img
