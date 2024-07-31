@@ -111,5 +111,5 @@ module.exports = {
   deleteUser,
   updateUser,
   getUserById,
-  promoteUser
+  promoteUser,
 };

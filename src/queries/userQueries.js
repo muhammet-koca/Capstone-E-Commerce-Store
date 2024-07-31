@@ -80,6 +80,7 @@ const getAllUsers = async () => {
 };
 
 const deleteUserById = async (id) => {
+  console.log(`Attempting to delete user with id: ${id}`);
   return await prisma.users.delete({
     where: {
       id,
@@ -144,5 +145,5 @@ module.exports = {
   deleteUserById,
   updateUserById,
   getSingleUser,
-  promoteUserById
+  promoteUserById,
 };
