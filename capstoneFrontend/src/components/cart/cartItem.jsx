@@ -1,61 +1,23 @@
-import { useParams } from "react-router-dom";
-import { useGetProductByIdQuery } from "../home/homeSlice";
 import React from "react";
+import { useGetProductByIdQuery } from "../home/homeSlice";
+import { useParams } from "react-router-dom";
 
-const SingleProduct = () => {
-  const { id } = useParams();
-  const {
-    data: singleProduct,
-    isSuccess,
-    isLoading,
-  } = useGetProductByIdQuery(id);
-
-  if (isLoading) {
-    return (
-      <div className="loading">
-        <h2>Loading...</h2>
-      </div>
-    );
-  }
-
-  if (!isSuccess || !singleProduct) {
-    return <div>Product not found</div>;
-  }
+const CartItem = ({ productId }) => {
+  // console.log(productId.productId);
+  // const { id } = useParams();
+  const { data: cartItem } = useGetProductByIdQuery(productId);
+  console.log(cartItem);
+  // console.log(productId);
 
   return (
-    <div>
-      <h1>{singleProduct.productName}</h1>
-      <p>Price: {singleProduct.price}</p>
-      <img
-        className="img"
-        src={singleProduct.image}
-        alt={singleProduct.productName}
-      />
-      {/* {" "} */}
-      {/* <div>
-    //       {token ? (
-    //         <button
-    //           type="button"
-    //           className="btn btn-primary"
-    //           id="single-button"
-    //           onClick={handleCheckout}
-    //         >
-    //           Checkout
-    //         </button>
-    //       ) : (
-    //         <p>Please log in to checkout this book.</p>
-    //       )}
-    //       <button
-    //         type="button"
-    //         className="btn btn-primary"
-    //         id="single-button"
-    //         onClick={() => navigate("/")}
-    //       >
-    //         Back
-    //       </button>
-    //     </div> */}
-    </div>
+    cartItem && (
+      <div className="single-product">
+        <img src={cartItem.image} alt={cartItem.productName} />
+        <h1>{cartItem.productName}</h1>
+        <p className="price">${cartItem.price}</p>
+      </div>
+    )
   );
 };
 
-export default SingleProduct;
+export default CartItem;

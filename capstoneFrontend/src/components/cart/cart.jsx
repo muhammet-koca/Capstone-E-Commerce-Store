@@ -5,9 +5,11 @@ import {
   useDeleteCartMutation,
   useDeleteCartItemMutation,
 } from "./cartSlice";
+import { useGetProductByIdQuery } from "../home/homeSlice";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import React from "react";
+import CartItem from "./cartItem";
 
 export default function Cart() {
   const { id } = useParams();
@@ -17,7 +19,6 @@ export default function Cart() {
   const createCart = useCreateCartMutation();
   const [deleteCart] = useDeleteCartMutation();
   const [deleteCartItem] = useDeleteCartItemMutation();
-  // const [cartItem, setCartItem] = useState({ id: null, quantity: 1 });
   const [quantities, setQuantities] = useState({});
 
   if (isLoading) {
@@ -76,13 +77,14 @@ export default function Cart() {
         cart.cartItems.map((item) => (
           <div className="product" key={item.id}>
             <p>
-              <Link to={`/product/cartitem/${item.id}`}>
-                {item.productName}
-              </Link>
+              <Link to={`/product/cartitem/${item.id}`}>{item.quantity}</Link>
             </p>
+            <p>{console.log(item.productsId)}</p>
+            <CartItem productId={item.productsId} />
             <form onSubmit={(event) => handleSubmit(event, item.id)}>
               <div className="form-row align-items-center">
                 <div className="col-auto my-1">
+                  <h2>Product</h2>
                   <label
                     className="mr-sm-2 sr-only"
                     htmlFor={`quantity-select-${item.id}`}
