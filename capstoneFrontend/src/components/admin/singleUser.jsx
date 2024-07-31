@@ -2,11 +2,26 @@ import { useGetUserQuery } from "../features/updateSlice";
 import { useNavigate, useParams } from "react-router-dom";
 import "../home/product.css";
 import React from "react";
+import { useDeleteUserMutation } from "./adminSlice";
 
 const SingleUser = () => {
   const { id } = useParams();
   const { data: singleUser, isSuccess, isLoading } = useGetUserQuery(id);
   const navigate = useNavigate();
+  const [deleteUser] = useDeleteUserMutation();
+
+  const handleDeleteUser = async (event, id) => {
+    event.preventDefault();
+    try {
+      const response = await deleteUser({ id });
+      if (response) {
+        alert("User deleted!");
+        navigate("/users");
+      }
+    } catch (error) {
+      console.log("Delete User error");
+    }
+  };
 
   if (isLoading) {
     return (
@@ -34,6 +49,12 @@ const SingleUser = () => {
           onClick={() => navigate("/users")}
         >
           Back
+        </button>
+        <button
+          onClick={(event) => handleDeleteUser(event, id)}
+          className="button-confirm"
+        >
+          Delete User
         </button>
         <button
           className="back-button"

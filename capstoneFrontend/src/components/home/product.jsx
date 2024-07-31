@@ -52,7 +52,7 @@ const SingleProduct = () => {
 
   if (sessionIsAdmin === "true") {
     return (
-      <div className="single-product">
+      <div className="form">
         <img src={singleProduct.image} alt={singleProduct.productName} />
         <h1>{singleProduct.productName}</h1>
         <p className="price">${singleProduct.price}</p>
@@ -61,7 +61,7 @@ const SingleProduct = () => {
         </button>
         <div className="button-container">
           <button
-            className="back-button"
+            className="button-confirm"
             type="button"
             onClick={() => navigate("/")}
           >
@@ -69,7 +69,7 @@ const SingleProduct = () => {
           </button>
 
           <button
-            className="back-button"
+            className="button-confirm"
             type="button"
             onClick={() => navigate(`/updateProduct/${id}`)}
           >
@@ -95,7 +95,7 @@ const SingleProduct = () => {
         </button>
         <div className="button-container">
           <button
-            className="back-button"
+            className="button-confirm"
             type="button"
             onClick={() => navigate("/")}
           >
