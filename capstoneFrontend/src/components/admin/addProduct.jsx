@@ -44,55 +44,55 @@ export default function AddProduct() {
 
   return (
     <div>
-      <form onSubmit={submit}>
-        <div className="form">
-          <label>*Product Name</label>
+      <form onSubmit={submit} className="form">
+        <div>
+          <label>*Product Name:</label>
           <input
             name="productName"
             value={form.productName}
             onChange={update}
             type="text"
-            className="form-control"
+            className="input"
             placeholder="Product Name"
             required
           />
         </div>
-        <div className="form-group">
-          <label>Image</label>
+        <div>
+          <label>Image:</label>
           <input
             name="image"
             value={form.image}
             onChange={update}
             type="text"
-            className="form-control"
+            className="input"
             placeholder="Image"
           />
         </div>
-        <div className="form-group">
-          <label>*Price</label>
+        <div>
+          <label>*Price:</label>
           <input
             name="price"
             value={form.price}
             onChange={update}
             type="number"
-            className="form-control"
+            className="input"
             placeholder="Price"
             required
           />
         </div>
-        <div className="form-group">
-          <label>Publish</label>
+        <div>
+          <label>Publish:</label>
           <input
             name="publish"
             value={form.publish}
             onChange={update}
             type="text"
-            className="form-control"
+            className="input"
             placeholder="Publish"
           />
         </div>
         <p>* Indicates a required field.</p>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="button-confirm">
           Add Product
         </button>
       </form>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useDeleteUserMutation, usePromoteUserMutation } from "./adminSlice";
+import { usePromoteUserMutation } from "./adminSlice";
 import { useGetUserQuery } from "../features/updateSlice";
 import "../login/login.css";
 import React from "react";
@@ -9,7 +9,7 @@ export default function PromoteUser() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { data: user } = useGetUserQuery(id);
-  const [deleteUser] = useDeleteUserMutation();
+  // const [deleteUser] = useDeleteUserMutation();
 
   useEffect(() => {
     console.log("User ID:", id);
@@ -49,23 +49,25 @@ export default function PromoteUser() {
     try {
       const response = await updateUser({ id, form });
       if (response) {
-        navigate("/");
+        navigate("/users");
       }
     } catch (error) {
       console.log("Update error");
     }
   };
 
-  const handleDeleteUser = async (event, id) => {
-    event.preventDefault();
-    try {
-      const response = await deleteUser({ id });
-      alert("User deleted!");
-      navigate("/users");
-    } catch (error) {
-      console.log("Delete User error");
-    }
-  };
+  // const handleDeleteUser = async (event, id) => {
+  //   event.preventDefault();
+  //   try {
+  //     const response = await deleteUser({ id });
+  //     if (response) {
+  //       alert("User deleted!");
+  //       navigate("/users");
+  //     }
+  //   } catch (error) {
+  //     console.log("Delete User error");
+  //   }
+  // };
 
   return (
     <div id="form-group">
@@ -75,7 +77,7 @@ export default function PromoteUser() {
       </h1>
       <form onSubmit={handleUser} className="form">
         <div>
-          <label>First Name</label>
+          <label>First Name:</label>
           <input
             name="firstName"
             value={form.firstName}
@@ -86,7 +88,7 @@ export default function PromoteUser() {
           />
         </div>
         <div>
-          <label>Last Name</label>
+          <label>Last Name:</label>
           <input
             name="lastName"
             value={form.lastName}
@@ -97,7 +99,7 @@ export default function PromoteUser() {
           />
         </div>
         <div>
-          <label>*Email Address</label>
+          <label>*Email Address:</label>
           <input
             name="email"
             value={form.email}
@@ -109,7 +111,7 @@ export default function PromoteUser() {
           />
         </div>
         <div>
-          <label>*Password</label>
+          <label>*Password:</label>
           <input
             name="password"
             value={form.password}
@@ -121,7 +123,7 @@ export default function PromoteUser() {
           />
         </div>
         <div>
-          <label>Admin</label>
+          <label>Admin:</label>
           <input
             name="isAdmin"
             value={form.isAdmin}
@@ -134,12 +136,12 @@ export default function PromoteUser() {
         <button type="submit" className="button-confirm">
           Update User
         </button>
-        <button
+        {/* <button
           onClick={(event) => handleDeleteUser(event, id)}
-          className="btn btn-primary"
+          className="button-confirm"
         >
           Delete User
-        </button>
+        </button> */}
       </form>
     </div>
   );

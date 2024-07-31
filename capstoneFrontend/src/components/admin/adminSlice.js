@@ -24,11 +24,10 @@ const productApi = api.injectEndpoints({
       query: ({ id }) => ({
         url: `/store/deleteuser/${id}`,
         method: "DELETE",
-        responseHandler: (response) => response.text(),
       }),
       invalidatesTags: ["User"],
     }),
-    // update user
+
     updateProduct: builder.mutation({
       query: ({ id, form }) => ({
         url: `/store/updateProduct/${id}`,
@@ -69,6 +68,7 @@ const adminSlice = createSlice({
   name: "admin",
   initialState: {
     products: [],
+    users: [],
   },
   reducers: {
     addProduct: (state, action) => {
@@ -86,6 +86,9 @@ const adminSlice = createSlice({
       if (index !== -1) {
         state.products[index] = action.payload;
       }
+    },
+    deleteUser: (state, action) => {
+      state.users = state.users.filter((user) => user.id !== action.payload);
     },
   },
   extraReducers: (builder) => {
@@ -113,6 +116,26 @@ const adminSlice = createSlice({
         if (index !== -1) {
           state.products[index] = updatedProduct;
         }
+      }
+    );
+    builder.addMatcher(
+      productApi.endpoints.promoteUser.matchFulfilled,
+      (state, { payload }) => {
+        const updatedUser = JSON.parse(payload);
+        const index = state.users.findIndex(
+          (user) => user.id === updatedUser.id
+        );
+
+        if (index !== -1) {
+          state.users[index] = updatedUser;
+        }
+      }
+    );
+    builder.addMatcher(
+      productApi.endpoints.deleteUser.matchFulfilled,
+      (state, { payload }) => {
+        const { id } = JSON.parse(payload);
+        state.users = state.users.filter((user) => user.id !== id);
       }
     );
   },
