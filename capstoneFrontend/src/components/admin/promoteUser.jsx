@@ -22,7 +22,7 @@ export default function PromoteUser() {
     lastName: "",
     email: "",
     password: "",
-    isAdmin: "",
+    isAdmin: false,
   });
 
   useEffect(() => {
@@ -32,15 +32,16 @@ export default function PromoteUser() {
         lastName: user.lastName || "",
         email: user.email || "",
         password: "",
-        isAdmin: "",
+        isAdmin: user.isAdmin || false,
       });
     }
   }, [user]);
 
   const update = (e) => {
+    const { name, value, type, checked } = e.target;
     setForm((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      [name]: type === "checkbox" ? checked : value,
     }));
   };
 
@@ -55,19 +56,6 @@ export default function PromoteUser() {
       console.log("Update error");
     }
   };
-
-  // const handleDeleteUser = async (event, id) => {
-  //   event.preventDefault();
-  //   try {
-  //     const response = await deleteUser({ id });
-  //     if (response) {
-  //       alert("User deleted!");
-  //       navigate("/users");
-  //     }
-  //   } catch (error) {
-  //     console.log("Delete User error");
-  //   }
-  // };
 
   return (
     <div id="form-group">
@@ -126,9 +114,9 @@ export default function PromoteUser() {
           <label>Admin:</label>
           <input
             name="isAdmin"
-            value={form.isAdmin}
+            checked={form.isAdmin}
             onChange={update}
-            type="text"
+            type="checkbox"
             className="input"
           />
         </div>
@@ -136,12 +124,6 @@ export default function PromoteUser() {
         <button type="submit" className="button-confirm">
           Update User
         </button>
-        {/* <button
-          onClick={(event) => handleDeleteUser(event, id)}
-          className="button-confirm"
-        >
-          Delete User
-        </button> */}
       </form>
     </div>
   );

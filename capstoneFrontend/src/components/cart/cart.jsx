@@ -76,30 +76,36 @@ export default function Cart() {
       {isSuccess &&
         cart.cartItems.map((item) => (
           <div className="product" key={item.id}>
-            <p>
+            {/* <p>
               <Link to={`/product/cartitem/${item.id}`}>{item.quantity}</Link>
-            </p>
-            <p>{console.log(item.productsId)}</p>
+            </p> */}
+
             <CartItem productId={item.productsId} />
             <form onSubmit={(event) => handleSubmit(event, item.id)}>
               <div className="form-row align-items-center">
                 <div className="col-auto my-1">
-                  <h2>Product</h2>
                   <label
                     className="mr-sm-2 sr-only"
                     htmlFor={`quantity-select-${item.id}`}
                   >
-                    Quantity
+                    Quantity:
                   </label>
                   <select
                     className="custom-select mr-sm-2"
                     id={`quantity-select-${item.id}`}
                     onChange={(e) => handleSelectChange(e, item.id)}
-                    value={quantities[item.id] || 1}
+                    value={quantities[item.id] || item.quantity}
                   >
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
                   </select>
                 </div>
                 <div className="col-auto my-1">

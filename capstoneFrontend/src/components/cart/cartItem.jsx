@@ -3,16 +3,25 @@ import { useGetProductByIdQuery } from "../home/homeSlice";
 import { useParams } from "react-router-dom";
 
 const CartItem = ({ productId }) => {
-  // console.log(productId.productId);
-  // const { id } = useParams();
-  const { data: cartItem } = useGetProductByIdQuery(productId);
+  const { data: cartItem, isLoading } = useGetProductByIdQuery(productId);
   console.log(cartItem);
-  // console.log(productId);
+
+  if (isLoading) {
+    return (
+      <div className="loading">
+        <h2>Loading...</h2>
+      </div>
+    );
+  }
 
   return (
     cartItem && (
       <div className="single-product">
-        <img src={cartItem.image} alt={cartItem.productName} />
+        <img
+          className="cart-image"
+          src={cartItem.image}
+          alt={cartItem.productName}
+        />
         <h1>{cartItem.productName}</h1>
         <p className="price">${cartItem.price}</p>
       </div>
