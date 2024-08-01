@@ -11,6 +11,7 @@ const {
 const register = async (req, res) => {
   try {
     const token = await registerQuery(req.body);
+    console.log(token);
     res.status(201).json(token);
   } catch (error) {
     console.error(error);
