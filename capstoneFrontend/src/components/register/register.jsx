@@ -23,6 +23,8 @@ export default function Register({ setEmail }) {
     password: "",
   });
 
+  const [message, setMessage] = useState("");
+
   const update = (e) => {
     setForm((prev) => ({
       ...prev,
@@ -32,7 +34,24 @@ export default function Register({ setEmail }) {
 
   const submit = async (e) => {
     e.preventDefault();
+    setMessage("");
     try {
+      if (!form.firstName || !form.lastName || !form.email || !form.password) {
+        setMessage("Please fill in all required fields.");
+        return;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(form.email)) {
+        setMessage("Please enter a valid email address.");
+        return; 
+      }
+
+      if (form.password.length < 8) {
+        setMessage("Password needs to be at least 8 characters.");
+        return;
+      }
+
       let response = false;
 
       response = await registerUser(form).unwrap();
@@ -43,13 +62,11 @@ export default function Register({ setEmail }) {
         const cartId = JSON.parse(createUserCart.data);
         dispatch(setCart(cartId.id));
         window.sessionStorage.setItem("Cart", cartId.id);
-        // state.cart = cartId.id;
-        // console.log("Cart ID:", cartId);
-        // console.log(state, "after");
+        setMessage("Registration successful!");
         navigate("/");
       }
     } catch (error) {
-      console.log(error, "Registration error");
+      setMessage("Registration failed. Please try again.");
     }
   };
 
@@ -105,6 +122,7 @@ export default function Register({ setEmail }) {
           />
         </div>
         <p>* Indicates a required field.</p>
+        {message && <p>{message}</p>}
         <button type="submit" className="button-confirm">
           Register
         </button>

@@ -35,10 +35,12 @@ export default function AddProduct() {
       console.log(responseJson);
 
       if (response) {
+        alert("Product added!");
         navigate("/");
       }
     } catch (error) {
       console.log(error, "Add Product error");
+      alert("Failed to add product.");
     }
   };
 

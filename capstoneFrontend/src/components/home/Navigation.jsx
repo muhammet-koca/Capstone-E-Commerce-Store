@@ -29,6 +29,7 @@ export default function Navigation() {
       navigate("/");
     } catch (error) {
       console.log("Logout error", error);
+      alert("Failed to logout.");
     }
   };
 

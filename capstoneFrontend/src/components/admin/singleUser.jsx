@@ -20,6 +20,7 @@ const SingleUser = () => {
       }
     } catch (error) {
       console.log("Delete User error");
+      alert("Failed to delete user.");
     }
   };
 
@@ -52,7 +53,7 @@ const SingleUser = () => {
         </button>
         <button
           onClick={(event) => handleDeleteUser(event, id)}
-          className="button-confirm"
+          className="back-button"
         >
           Delete User
         </button>
