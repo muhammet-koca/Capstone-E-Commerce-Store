@@ -45,19 +45,19 @@ export default function UpdateUser() {
     try {
       const response = await updateUser({ id, form });
       if (response) {
+        alert("Account updated!");
         navigate("/");
-        alert("User updated!");
       }
     } catch (error) {
       console.log("Update error");
-      alert("Failed to update user.");
+      alert("Failed to update account.");
     }
   };
 
   return (
     <div id="form-group">
       <h1>
-        Update User:{" "}
+        Update Account:{" "}
         {user ? `${user.firstName} ${user.lastName}` : "Loading..."}
       </h1>
       <form onSubmit={handleUser} className="form">

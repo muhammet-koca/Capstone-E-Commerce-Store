@@ -9,7 +9,6 @@ export default function PromoteUser() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { data: user } = useGetUserQuery(id);
-  // const [deleteUser] = useDeleteUserMutation();
 
   useEffect(() => {
     console.log("User ID:", id);
@@ -50,8 +49,8 @@ export default function PromoteUser() {
     try {
       const response = await updateUser({ id, form });
       if (response) {
-        navigate("/users");
         alert("User updated!");
+        navigate("/users");
       }
     } catch (error) {
       console.log("Update error");

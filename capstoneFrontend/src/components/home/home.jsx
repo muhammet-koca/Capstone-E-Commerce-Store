@@ -6,7 +6,12 @@ import "./home.css";
 
 export default function Home() {
   const [sortOption, setSortOption] = useState("name-asc");
-  const { data: products = [], isSuccess, isLoading } = useGetProductQuery();
+  const {
+    data: products = [],
+    isSuccess,
+    isLoading,
+    error,
+  } = useGetProductQuery();
   const [searchInput, setSearchInput] = useState("");
 
   const filteredProducts = products.filter((item) =>
@@ -36,6 +41,15 @@ export default function Home() {
     return (
       <div className="loading">
         <h2>Loading...</h2>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="error">
+        <h2>Failed to load products.</h2>
+        <button onClick={() => window.location.reload()}>Retry</button>
       </div>
     );
   }

@@ -6,7 +6,6 @@ import React from "react";
 
 export default function GetUsers() {
   const { data: users = [], isSuccess, isLoading } = useGetAllUsersQuery();
-  // const { getUserById } = useGetUserQuery();
 
   useEffect(() => {
     const userId = () => {};
