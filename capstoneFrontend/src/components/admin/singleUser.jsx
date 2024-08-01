@@ -20,6 +20,7 @@ const SingleUser = () => {
       }
     } catch (error) {
       console.log("Delete User error");
+      alert("Failed to delete user.");
     }
   };
 

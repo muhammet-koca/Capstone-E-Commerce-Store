@@ -1,0 +1,18 @@
+.checkout-confirmation {
+  text-align: center;
+  padding: 20px;
+}
+
+.button-home {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 20px;
+  background-color: #28a745;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.button-home:hover {
+  background-color: #218838;
+}

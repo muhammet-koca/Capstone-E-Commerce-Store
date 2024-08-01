@@ -32,10 +32,11 @@ const SingleProduct = () => {
 
   const handleAddToCart = async () => {
     try {
-      await addToCart({ id, sessionCart });
-      alert("Added to Cart");
+      await addToCart({ id, sessionCart }).unwrap();
+      alert("Added to cart");
     } catch (error) {
       console.log("Failed to add to cart", error);
+      alert("This product is already in your cart");
     }
   };
 
@@ -47,6 +48,7 @@ const SingleProduct = () => {
       navigate("/");
     } catch (error) {
       console.log("Delete Product error");
+      alert("Failed to delete product");
     }
   };
 

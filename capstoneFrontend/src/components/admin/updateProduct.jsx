@@ -45,10 +45,12 @@ export default function UpdateProduct() {
     try {
       const response = await updateProduct({ id, form });
       if (response) {
+        alert("Product updated!");
         navigate("/");
       }
     } catch (error) {
       console.log("Update Product error");
+      alert("Failed to update product.");
     }
   };
 
@@ -57,7 +59,7 @@ export default function UpdateProduct() {
       <h1>
         Update Product: {product ? `${product.productName}` : "Loading..."}
       </h1>
-      <form onSubmit={handleProduct}>
+      <form onSubmit={handleProduct} className="form">
         <div className="form-group">
           <label>*Product Name</label>
           <input

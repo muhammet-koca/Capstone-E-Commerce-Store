@@ -51,14 +51,16 @@ export default function PromoteUser() {
       const response = await updateUser({ id, form });
       if (response) {
         navigate("/users");
+        alert("User updated!");
       }
     } catch (error) {
       console.log("Update error");
+      alert("Failed to update user.");
     }
   };
 
   return (
-    <div id="form-group">
+    <div id="form">
       <h1>
         Update User:{" "}
         {user ? `${user.firstName} ${user.lastName}` : "Loading..."}
