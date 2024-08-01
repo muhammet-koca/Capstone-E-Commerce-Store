@@ -46,9 +46,11 @@ export default function UpdateUser() {
       const response = await updateUser({ id, form });
       if (response) {
         navigate("/");
+        alert("User updated!");
       }
     } catch (error) {
       console.log("Update error");
+      alert("Failed to update user.");
     }
   };
 

@@ -13,6 +13,7 @@ import UpdateProduct from "./components/admin/updateProduct";
 import GetUsers from "./components/admin/adminUsers";
 import SingleUser from "./components/admin/singleUser";
 import PromoteUser from "./components/admin/promoteUser";
+import CheckoutConfirmation from "./components/cart/checkoutConfirmation";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -27,6 +28,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/product/:id" element={<SingleProduct />} />
+          <Route
+            path="/checkout-confirmation"
+            element={<CheckoutConfirmation />}
+          />
           <Route path="/login" element={<Login setEmail={setEmail} />} />
           <Route path="/register" element={<Register setEmail={setEmail} />} />
           <Route element={<Protected />}>
