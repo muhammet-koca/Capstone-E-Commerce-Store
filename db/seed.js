@@ -1,10 +1,30 @@
-const { faker } = require("@faker-js/faker");
+const axios = require("axios");
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
+const { faker } = require("@faker-js/faker");
 const bcrypt = require("bcrypt");
-
+const getProductData = async () => {
+  const response = await axios.get("https://dummyjson.com/products");
+  return response.data.products;
+};
 const seed = async () => {
   try {
+    const productsData = await getProductData();
+
+    const products = await Promise.all(
+      productsData.map(async (product) => {
+        return await prisma.products.create({
+          data: {
+            productName: product.title,
+            image: product.images[0],
+            price: parseFloat(product.price),
+            publish: true,
+          },
+        });
+      })
+    );
+    console.log("Products seeded:", products);
+
     const users = await Promise.all(
       [...Array(5)].map(async () => {
         const password = faker.internet.password();
@@ -20,45 +40,7 @@ const seed = async () => {
         });
       })
     );
-
     console.log("users seeded", users);
-
-    const products = await Promise.all(
-      [...Array(5)].map(async () => {
-        return await prisma.products.create({
-          data: {
-            productName: faker.commerce.productName(),
-            image: faker.image.urlLoremFlickr({ category: "animals" }),
-            price: parseFloat(faker.commerce.price()),
-            publish: faker.datatype.boolean(),
-          },
-        });
-      })
-    );
-
-    console.log("products seeded", products);
-
-    const addProductsToCart = async (cartId) => {
-      const addedProducts = new Set();
-      await Promise.all(
-        [...Array(5)].map(async () => {
-          let product;
-          do {
-            product = products[Math.floor(Math.random() * products.length)];
-          } while (addedProducts.has(product.id));
-
-          addedProducts.add(product.id);
-
-          return await prisma.cartItems.create({
-            data: {
-              productsId: product.id,
-              cartId,
-              quantity: faker.number.int({ min: 1, max: 5 }),
-            },
-          });
-        })
-      );
-    };
 
     await Promise.all(
       users.map(async (user) => {
@@ -67,17 +49,13 @@ const seed = async () => {
             usersId: user.id,
           },
         });
-
-        await addProductsToCart(cart.id);
+        // await addProductsToCart(cart.id);
       })
     );
-
-    console.log("carts and cart items seeded");
   } catch (error) {
-    console.error("error seeding", error);
+    console.error("Error seeding products:", error);
   } finally {
     await prisma.$disconnect();
   }
 };
-
 seed();
