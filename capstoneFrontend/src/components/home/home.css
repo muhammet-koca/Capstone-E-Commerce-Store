@@ -41,8 +41,149 @@
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-@media (max-width: 768px) {
+.search-container {
+  display: flex;
+  justify-content: center;
+  padding: 2px;
+  background-color: lightblue;
+}
+
+.sort-options {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 15px;
+  background-color: lightblue;
+}
+.search {
+  padding-top: 2px;
+}
+.search-bar {
+  height: 30px;
+}
+.product-list {
+  background-color: lightblue;
+}
+#root {
+  background-color: lightblue;
+}
+
+img {
+  width: auto;
+}
+.button-log:active,
+.button-confirm:active {
+  box-shadow: 0px 0px var(--main-color);
+  transform: translate(3px, 3px);
+}
+
+.button-confirm {
+  margin: 50px auto 0 auto;
+  width: 160px;
+  height: 60px;
+  border-radius: 5px;
+  border: 2px solid var(--main-color);
+  background-color: var(--bg-color);
+  box-shadow: 4px 4px var(--main-color);
+  font-size: 15px;
+  font-weight: 550;
+  color: var(--font-color);
+  cursor: grab;
+}
+/* style product on single product page*/
+.product-form {
+  --input-focus: #2d8cf0;
+  --font-color: #323232;
+  --font-color-sub: #666;
+  --bg-color: beige;
+  --main-color: black;
+
+  background: lightblue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 50%;
+  margin: auto;
+  justify-content: center;
+}
+.form-cart {
+  --input-focus: #2d8cf0;
+  --font-color: #323232;
+  --font-color-sub: #666;
+  --bg-color: beige;
+  --main-color: black;
+  padding: 20px;
+  background: lightblue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 50%;
+  margin: auto;
+  justify-content: center;
+}
+
+/* style product on checkout page*/
+.single-product {
+  background-color: lightblue;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+div {
+  background-color: lightblue;
+}
+.product {
+  background-color: lightblue;
+  justify-content: center;
+}
+.checkout-button {
+  margin-left: 39%;
+}
+
+.nav-bar {
+  background-color: #fff;
+}
+@media (max-width: 400px) {
   .product-card {
     width: 100%;
+  }
+}
+
+@media (max-width: 800px) {
+  .cart-image {
+    width: 100%;
+  }
+  form {
+    width: 50%;
+  }
+  .checkout-button {
+    width: 25%;
+    margin-left: 39%;
+  }
+}
+@media (max-width: 500px) {
+  .cart-image {
+    width: 100%;
+  }
+  form {
+    width: 80%;
+  }
+  .button-div {
+    width: auto;
+    font-size: small;
+    padding: 10px;
+  }
+  #quantity {
+    width: auto;
+  }
+  .checkout-button {
+    width: 25%;
+    margin-left: 39%;
   }
 }

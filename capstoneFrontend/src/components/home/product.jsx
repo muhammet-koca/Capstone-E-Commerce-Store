@@ -3,7 +3,7 @@ import { useGetProductByIdQuery } from "./homeSlice";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAddToCartMutation } from "../cart/cartSlice";
 import { useDeleteProductMutation } from "../admin/adminSlice";
-import "./product.css";
+import "./home.css";
 
 const SingleProduct = () => {
   const { id } = useParams();
@@ -52,14 +52,19 @@ const SingleProduct = () => {
 
   if (sessionIsAdmin === "true") {
     return (
-      <div className="form">
+      <div className="product-form">
         <img src={singleProduct.image} alt={singleProduct.productName} />
         <h1>{singleProduct.productName}</h1>
         <p className="price">${singleProduct.price}</p>
-        <button type="button" onClick={handleAddToCart}>
-          Add to Cart
-        </button>
+
         <div className="button-container">
+          <button
+            type="button"
+            className="button-confirm"
+            onClick={handleAddToCart}
+          >
+            Add to Cart
+          </button>
           <button
             className="button-confirm"
             type="button"
@@ -77,7 +82,7 @@ const SingleProduct = () => {
           </button>
           <button
             onClick={(event) => handleDeleteProduct(event, id)}
-            className="btn btn-primary"
+            className="button-confirm"
           >
             Delete Product
           </button>

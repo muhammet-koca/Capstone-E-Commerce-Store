@@ -1,6 +1,6 @@
 import { useGetUserQuery } from "../features/updateSlice";
 import { useNavigate, useParams } from "react-router-dom";
-import "../home/product.css";
+// import "../home/product.css";
 import React from "react";
 import { useDeleteUserMutation } from "./adminSlice";
 
@@ -52,7 +52,7 @@ const SingleUser = () => {
         </button>
         <button
           onClick={(event) => handleDeleteUser(event, id)}
-          className="button-confirm"
+          className="back-button"
         >
           Delete User
         </button>

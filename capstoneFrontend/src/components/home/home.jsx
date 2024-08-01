@@ -43,6 +43,7 @@ export default function Home() {
   return (
     <div>
       <div className="search-container">
+        <p className="search">Search:</p>
         <input
           type="text"
           placeholder="Search products..."

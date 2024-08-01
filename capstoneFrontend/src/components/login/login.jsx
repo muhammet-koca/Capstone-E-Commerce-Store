@@ -61,7 +61,7 @@ const Login = ({ setEmail }) => {
             className="input"
           />
         </label>
-        <p>* Indicates a required field.</p>
+        <p className="required-field">* Indicates a required field.</p>
         <button className="button-confirm" type="submit">
           Login
         </button>
