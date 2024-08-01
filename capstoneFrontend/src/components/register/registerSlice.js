@@ -36,8 +36,6 @@ const registerSlice = createSlice({
       registerApi.endpoints.register.matchFulfilled,
       (state, { payload }) => {
         const temp = JSON.parse(payload);
-        console.log("Register response", temp);
-        console.log(temp.cart);
         state.token = temp.token;
         state.user = temp;
         state.id = temp.id;

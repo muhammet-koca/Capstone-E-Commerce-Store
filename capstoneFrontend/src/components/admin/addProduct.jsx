@@ -30,9 +30,7 @@ export default function AddProduct() {
       let response = false;
 
       response = await createProduct(form).unwrap();
-      console.log("createProduct:", response);
       const responseJson = JSON.parse(response);
-      console.log(responseJson);
 
       if (response) {
         alert("Product added!");
@@ -93,7 +91,7 @@ export default function AddProduct() {
             placeholder="Publish"
           />
         </div>
-        <p>* Indicates a required field.</p>
+        <p className="required-field">* Indicates a required field.</p>
         <button type="submit" className="button-confirm">
           Add Product
         </button>

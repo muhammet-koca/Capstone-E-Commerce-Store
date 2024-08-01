@@ -5,8 +5,8 @@ import {
   useDeleteCartMutation,
   useDeleteCartItemMutation,
 } from "./cartSlice";
-import { useGetProductByIdQuery } from "../home/homeSlice";
-import { Link, useParams, useNavigate } from "react-router-dom";
+// import { useGetProductByIdQuery } from "../home/homeSlice";
+import { useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import React from "react";
 import CartItem from "./cartItem";
@@ -39,10 +39,8 @@ export default function Cart() {
         id: cartItemId,
         form: { quantity: quantities[cartItemId] || 1 },
       }).unwrap();
-      console.log(response);
       alert("Quantity updated!");
     } catch (error) {
-      console.log("Update cart error", error);
       alert("Failed to update quantity.");
     }
   };
@@ -65,7 +63,6 @@ export default function Cart() {
       alert("You are now being redirected to checkout!");
       navigate("/checkout-confirmation");
     } catch (error) {
-      console.log("Checkout error", error);
       alert("Unable to proceed to checkout.");
     }
   };
@@ -76,7 +73,6 @@ export default function Cart() {
       const response = await deleteCartItem({ id }).unwrap();
       alert("Product removed from from your cart!");
     } catch (error) {
-      console.log("Product remove error");
       alert("Failed to remove product.");
     }
   };
@@ -85,9 +81,7 @@ export default function Cart() {
     <div>
       {isSuccess &&
         cart.cartItems.map((item) => (
-
           <div className="form-cart" key={item.id}>
-
             <CartItem productId={item.productsId} />
             <form
               onSubmit={(event) => handleSubmit(event, item.id)}

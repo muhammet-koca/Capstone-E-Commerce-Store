@@ -1,12 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { api } from "../../app/api";
 
-// const token = useSelector((state) => state.register.token || state.login.token);
-// const sessionToken = window.sessionStorage.getItem("Token");
-
-// getProductById: builder.query({
-//     query: (id) => `/store/product/${id}`,
-
 // get user
 const userApi = api.injectEndpoints({
   endpoints: (builder) => ({
@@ -16,16 +10,6 @@ const userApi = api.injectEndpoints({
       }),
       providesTags: ["User"],
     }),
-
-    // delete user
-    // deleteUser: builder.mutation({
-    //   query: ({ id }) => ({
-    //     url: `/store/user/${id}`,
-    //     method: "DELETE",
-    //     responseHandler: (response) => response.text(),
-    //   }),
-    //   invalidatesTags: ["User"],
-    // }),
 
     // update user
     updateUser: builder.mutation({

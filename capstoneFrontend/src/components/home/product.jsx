@@ -35,7 +35,6 @@ const SingleProduct = () => {
       await addToCart({ id, sessionCart }).unwrap();
       alert("Added to cart");
     } catch (error) {
-      console.log("Failed to add to cart", error);
       alert("This product is already in your cart");
     }
   };
@@ -47,7 +46,6 @@ const SingleProduct = () => {
       alert("Product deleted!");
       navigate("/");
     } catch (error) {
-      console.log("Delete Product error");
       alert("Failed to delete product");
     }
   };
@@ -55,7 +53,11 @@ const SingleProduct = () => {
   if (sessionIsAdmin === "true") {
     return (
       <div className="product-form">
-        <img src={singleProduct.image} alt={singleProduct.productName} />
+        <img
+          src={singleProduct.image}
+          alt={singleProduct.productName}
+          height="300px"
+        />
         <h1>{singleProduct.productName}</h1>
         <p className="price">${singleProduct.price}</p>
 
@@ -93,21 +95,31 @@ const SingleProduct = () => {
     );
   } else {
     return (
-      <div className="single-product">
-        <img src={singleProduct.image} alt={singleProduct.productName} />
-        <h1>{singleProduct.productName}</h1>
-        <p className="price">${singleProduct.price}</p>
-        <button type="button" onClick={handleAddToCart}>
-          Add to Cart
-        </button>
-        <div className="button-container">
+      <div className="product-form">
+        <div className="single-product">
+          <img
+            src={singleProduct.image}
+            alt={singleProduct.productName}
+            height="300px"
+          />
+          <h1>{singleProduct.productName}</h1>
+          <p className="price">${singleProduct.price}</p>
           <button
-            className="button-confirm"
             type="button"
-            onClick={() => navigate("/")}
+            onClick={handleAddToCart}
+            className="button-confirm"
           >
-            Back
+            Add to Cart
           </button>
+          <div className="button-container">
+            <button
+              className="button-confirm"
+              type="button"
+              onClick={() => navigate("/")}
+            >
+              Back
+            </button>
+          </div>
         </div>
       </div>
     );

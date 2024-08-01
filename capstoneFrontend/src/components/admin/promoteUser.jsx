@@ -53,7 +53,6 @@ export default function PromoteUser() {
         navigate("/users");
       }
     } catch (error) {
-      console.log("Update error");
       alert("Failed to update user.");
     }
   };
@@ -118,10 +117,10 @@ export default function PromoteUser() {
             checked={form.isAdmin}
             onChange={update}
             type="checkbox"
-            className="input"
+            className="admin-input"
           />
         </div>
-        <p>* Indicates a required field.</p>
+        <p className="required-field">* Indicates a required field.</p>
         <button type="submit" className="button-confirm">
           Update User
         </button>

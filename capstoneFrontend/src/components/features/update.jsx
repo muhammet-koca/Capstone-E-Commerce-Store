@@ -49,7 +49,6 @@ export default function UpdateUser() {
         navigate("/");
       }
     } catch (error) {
-      console.log("Update error");
       alert("Failed to update account.");
     }
   };
@@ -107,7 +106,7 @@ export default function UpdateUser() {
             className="input"
           />
         </div>
-        <p>* Indicates a required field.</p>
+        <p className="required-field">* Indicates a required field.</p>
         <button type="submit" className="button-confirm">
           Update User
         </button>

@@ -17,8 +17,6 @@ import CheckoutConfirmation from "./components/cart/checkoutConfirmation";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-//update routes for current site
-
 function App() {
   const [email, setEmail] = useState();
   return (

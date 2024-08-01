@@ -8,7 +8,6 @@ export default function Navigation() {
   const token = useSelector(
     (state) => state.login.token || state.register.token
   );
-  // const user = useSelector((state) => state.login.user || state.register.user);
   const sessionToken = window.sessionStorage.getItem("Token");
   const sessionUser = window.sessionStorage.getItem("User");
   const sessionCart = window.sessionStorage.getItem("Cart");
@@ -29,7 +28,6 @@ export default function Navigation() {
       alert("Logged Out!");
       navigate("/");
     } catch (error) {
-      console.log("Logout error", error);
       alert("Failed to logout.");
     }
   };

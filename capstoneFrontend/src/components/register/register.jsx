@@ -14,7 +14,6 @@ export default function Register({ setEmail }) {
   const dispatch = useDispatch();
 
   const state = useSelector((state) => state);
-  // console.log(state);
 
   const [form, setForm] = useState({
     firstName: "",
@@ -44,7 +43,7 @@ export default function Register({ setEmail }) {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(form.email)) {
         setMessage("Please enter a valid email address.");
-        return; 
+        return;
       }
 
       if (form.password.length < 8) {

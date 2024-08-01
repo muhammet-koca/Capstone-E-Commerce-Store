@@ -21,15 +21,10 @@ function storeToken(state, { payload }) {
   console.log(payload);
 
   const temp = JSON.parse(payload);
-  //   console.log(temp.token.email);
   state.token = temp.token.token;
   state.id = temp.token.id;
   state.user = temp.token;
-  console.log(temp.token);
   state.isAdmin = temp.token.isAdmin;
-  console.log(temp.token.isAdmin);
-  // state.cart = temp.token.cart.id;
-  console.log(temp.token.cart.id);
   window.sessionStorage.setItem("isAdmin", temp.token.isAdmin);
   window.sessionStorage.setItem(TOKEN, temp.token.token);
   window.sessionStorage.setItem("User", temp.token.id);
@@ -46,7 +41,6 @@ const loginSlice = createSlice({
   },
   reducers: {
     setUser: (state, action) => {
-      console.log("Setting user in login:", action.payload);
       state.user = action.payload;
     },
   },
