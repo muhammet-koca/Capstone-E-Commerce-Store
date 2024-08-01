@@ -1,6 +1,4 @@
 const { bcrypt, prisma, jwt } = require("../share");
-import * as dotenv from "dotenv";
-dotenv.config();
 
 const registerQuery = async ({
   firstName,
