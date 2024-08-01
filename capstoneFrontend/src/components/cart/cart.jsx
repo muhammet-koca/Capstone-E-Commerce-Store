@@ -85,7 +85,9 @@ export default function Cart() {
     <div>
       {isSuccess &&
         cart.cartItems.map((item) => (
-          <div className="product" key={item.id}>
+
+          <div className="form-cart" key={item.id}>
+
             <CartItem productId={item.productsId} />
             <form
               onSubmit={(event) => handleSubmit(event, item.id)}
@@ -96,6 +98,7 @@ export default function Cart() {
                   <label
                     className="mr-sm-2 sr-only"
                     htmlFor={`quantity-select-${item.id}`}
+                    id="quantity"
                   >
                     Quantity:
                   </label>
@@ -117,17 +120,16 @@ export default function Cart() {
                     <option value="10">10</option>
                   </select>
                 </div>
-                <div className="col-auto my-1">
-                  <button type="submit" className="btn btn-primary">
-                    Update Quantity
-                  </button>
-                  <button
-                    onClick={(event) => removeCartItem(event, item.id)}
-                    className="btn btn-primary"
-                  >
-                    Remove from Cart
-                  </button>
-                </div>
+
+                <button type="submit" className="button.confirm">
+                  Update Quantity
+                </button>
+                <button
+                  onClick={(event) => removeCartItem(event, item.id)}
+                  className="btn btn-primary"
+                >
+                  Remove from Cart
+                </button>
               </div>
             </form>
           </div>

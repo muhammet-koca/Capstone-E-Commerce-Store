@@ -14,6 +14,9 @@
   border-radius: 5px;
   border: 2px solid var(--main-color);
   box-shadow: 4px 4px var(--main-color);
+  width: 50%;
+  margin: auto;
+  justify-content: center;
 }
 
 .title {
@@ -86,7 +89,7 @@
 
 .button-confirm {
   margin: 50px auto 0 auto;
-  width: 120px;
+  width: 160px;
   height: 40px;
   border-radius: 5px;
   border: 2px solid var(--main-color);
@@ -96,4 +99,26 @@
   font-weight: 600;
   color: var(--font-color);
   cursor: pointer;
+}
+.required-field {
+  font-style: italic;
+  font-weight: bold;
+  font-size: small;
+}
+h2 {
+  justify-content: center;
+  margin-left: 45%;
+}
+
+@media screen and (max-width: 600px) {
+  .input {
+    width: 50%;
+  }
+  .button-confirm {
+    width: 50%;
+    font-size: 10px;
+  }
+  label {
+    font-family: Arial, Helvetica, sans-serif;
+  }
 }

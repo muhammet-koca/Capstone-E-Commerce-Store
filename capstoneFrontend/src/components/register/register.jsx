@@ -72,6 +72,7 @@ export default function Register({ setEmail }) {
 
   return (
     <div>
+      <h2>Register</h2>
       <form onSubmit={submit} className="form">
         <div>
           <label>*First Name:</label>
@@ -121,8 +122,11 @@ export default function Register({ setEmail }) {
             className="input"
           />
         </div>
-        <p>* Indicates a required field.</p>
+
+        <p className="required-field">* Indicates a required field.</p>
+
         {message && <p>{message}</p>}
+
         <button type="submit" className="button-confirm">
           Register
         </button>

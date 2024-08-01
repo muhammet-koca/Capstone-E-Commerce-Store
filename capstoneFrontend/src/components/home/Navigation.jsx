@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import "./home.css";
 
 export default function Navigation() {
   const token = useSelector(
@@ -35,7 +36,7 @@ export default function Navigation() {
 
   if (sessionIsAdmin === "true") {
     return (
-      <div>
+      <div className="nav-bar">
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
           <div className="container-fluid">
             <a className="navbar-brand" href="/">
