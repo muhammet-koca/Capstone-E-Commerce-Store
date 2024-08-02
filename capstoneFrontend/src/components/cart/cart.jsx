@@ -115,12 +115,12 @@ export default function Cart() {
                   </select>
                 </div>
 
-                <button type="submit" className="button.confirm">
+                <button type="submit" className="button-confirm2">
                   Update Quantity
                 </button>
                 <button
                   onClick={(event) => removeCartItem(event, item.id)}
-                  className="btn btn-primary"
+                  className="button-confirm2"
                 >
                   Remove from Cart
                 </button>

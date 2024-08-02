@@ -44,13 +44,6 @@ const SingleUser = () => {
 
       <div className="button-container">
         <button
-          className="back-button"
-          type="button"
-          onClick={() => navigate("/users")}
-        >
-          Back
-        </button>
-        <button
           onClick={(event) => handleDeleteUser(event, id)}
           className="back-button"
         >
@@ -62,6 +55,13 @@ const SingleUser = () => {
           onClick={() => navigate(`/update/user/${id}`)}
         >
           Update User
+        </button>
+        <button
+          className="back-button"
+          type="button"
+          onClick={() => navigate("/users")}
+        >
+          Back
         </button>
       </div>
     </div>
