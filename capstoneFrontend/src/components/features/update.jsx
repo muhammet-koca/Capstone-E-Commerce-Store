@@ -8,6 +8,7 @@ export default function UpdateUser() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { data: user } = useGetUserQuery(id);
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     console.log("User ID:", id);
@@ -32,6 +33,11 @@ export default function UpdateUser() {
       });
     }
   }, [user]);
+
+  if (form.password.length < 8) {
+    setMessage("Password needs to be at least 8 characters.");
+    return;
+  }
 
   const update = (e) => {
     setForm((prev) => ({
@@ -107,6 +113,7 @@ export default function UpdateUser() {
           />
         </div>
         <p className="required-field">* Indicates a required field.</p>
+        {message && <p>{message}</p>}
         <button type="submit" className="button-confirm">
           Update User
         </button>
