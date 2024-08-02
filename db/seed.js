@@ -3,12 +3,25 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 const { faker } = require("@faker-js/faker");
 const bcrypt = require("bcrypt");
+
 const getProductData = async () => {
-  const response = await axios.get("https://dummyjson.com/products");
-  return response.data.products;
+  const limit = 30;
+  const totalProducts = 100;
+  let products = [];
+
+  for (let skip = 0; skip < totalProducts; skip += limit) {
+    const response = await axios.get(
+      `https://dummyjson.com/products?limit=${limit}&skip=${skip}`
+    );
+    products = products.concat(response.data.products);
+  }
+  return products;
 };
+
 const seed = async () => {
   try {
+    await prisma.products.deleteMany({});
+
     const productsData = await getProductData();
 
     const products = await Promise.all(
@@ -49,7 +62,6 @@ const seed = async () => {
             usersId: user.id,
           },
         });
-        // await addProductsToCart(cart.id);
       })
     );
   } catch (error) {
