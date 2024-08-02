@@ -9,6 +9,7 @@ export default function PromoteUser() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { data: user } = useGetUserQuery(id);
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     console.log("User ID:", id);
@@ -35,6 +36,11 @@ export default function PromoteUser() {
       });
     }
   }, [user]);
+
+  if (form.password.length < 8) {
+    setMessage("Password needs to be at least 8 characters.");
+    return;
+  }
 
   const update = (e) => {
     const { name, value, type, checked } = e.target;
@@ -121,6 +127,7 @@ export default function PromoteUser() {
           />
         </div>
         <p className="required-field">* Indicates a required field.</p>
+        {message && <p>{message}</p>}
         <button type="submit" className="button-confirm">
           Update User
         </button>
