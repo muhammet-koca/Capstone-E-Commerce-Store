@@ -72,14 +72,6 @@ const SingleProduct = () => {
           <button
             className="button-confirm"
             type="button"
-            onClick={() => navigate("/")}
-          >
-            Back
-          </button>
-
-          <button
-            className="button-confirm"
-            type="button"
             onClick={() => navigate(`/updateProduct/${id}`)}
           >
             Update Product
@@ -89,6 +81,13 @@ const SingleProduct = () => {
             className="button-confirm"
           >
             Delete Product
+          </button>
+          <button
+            className="button-confirm"
+            type="button"
+            onClick={() => navigate("/")}
+          >
+            Back
           </button>
         </div>
       </div>

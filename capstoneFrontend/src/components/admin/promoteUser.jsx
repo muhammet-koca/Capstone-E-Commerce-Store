@@ -37,11 +37,6 @@ export default function PromoteUser() {
     }
   }, [user]);
 
-  if (form.password.length < 8) {
-    setMessage("Password needs to be at least 8 characters.");
-    return;
-  }
-
   const update = (e) => {
     const { name, value, type, checked } = e.target;
     setForm((prev) => ({
@@ -52,6 +47,10 @@ export default function PromoteUser() {
 
   const handleUser = async (event) => {
     event.preventDefault();
+    if (form.password.length < 8) {
+      setMessage("Password needs to be at least 8 characters.");
+      return;
+    }
     try {
       const response = await updateUser({ id, form });
       if (response) {
