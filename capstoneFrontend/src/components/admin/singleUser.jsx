@@ -2,6 +2,7 @@ import { useGetUserQuery } from "../features/updateSlice";
 import { useNavigate, useParams } from "react-router-dom";
 import React from "react";
 import { useDeleteUserMutation } from "./adminSlice";
+import "../home/home.css";
 
 const SingleUser = () => {
   const { id } = useParams();
@@ -42,22 +43,22 @@ const SingleUser = () => {
       </h1>
       <p className="price">Email:{singleUser.email}</p>
 
-      <div className="button-container">
+      <div className="form">
         <button
           onClick={(event) => handleDeleteUser(event, id)}
-          className="back-button"
+          className="button-confirm"
         >
           Delete User
         </button>
         <button
-          className="back-button"
+          className="button-confirm"
           type="button"
           onClick={() => navigate(`/update/user/${id}`)}
         >
           Update User
         </button>
         <button
-          className="back-button"
+          className="button-confirm"
           type="button"
           onClick={() => navigate("/users")}
         >

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { usePromoteUserMutation } from "./adminSlice";
 import { useGetUserQuery } from "../features/updateSlice";
-import "../login/login.css";
+import "../home/home.css";
 import React from "react";
 
 export default function PromoteUser() {

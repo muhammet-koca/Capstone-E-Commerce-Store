@@ -4,7 +4,7 @@ import { useRegisterMutation } from "../register/registerSlice";
 import { useCreateCartMutation } from "../cart/cartSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { setCart } from "../register/registerSlice";
-import "../login/login.css";
+import "../home/home.css";
 import React from "react";
 
 export default function Register({ setEmail }) {

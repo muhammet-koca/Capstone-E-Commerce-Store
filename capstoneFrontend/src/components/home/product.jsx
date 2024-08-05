@@ -92,7 +92,7 @@ const SingleProduct = () => {
         </div>
       </div>
     );
-  } else {
+  } else if (sessionCart) {
     return (
       <div className="product-form">
         <div className="single-product">
@@ -110,6 +110,29 @@ const SingleProduct = () => {
           >
             Add to Cart
           </button>
+          <div className="button-container">
+            <button
+              className="button-confirm"
+              type="button"
+              onClick={() => navigate("/")}
+            >
+              Back
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  } else {
+    return (
+      <div className="product-form">
+        <div className="single-product">
+          <img
+            src={singleProduct.image}
+            alt={singleProduct.productName}
+            height="300px"
+          />
+          <h1>{singleProduct.productName}</h1>
+          <p className="price">${singleProduct.price}</p>
           <div className="button-container">
             <button
               className="button-confirm"

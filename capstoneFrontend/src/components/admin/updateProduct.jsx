@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useUpdateProductMutation } from "./adminSlice";
 import { useGetProductByIdQuery } from "../home/homeSlice";
 import React from "react";
+import "../home/home.css";
 
 export default function UpdateProduct() {
   const { id } = useParams();
@@ -60,54 +61,50 @@ export default function UpdateProduct() {
         Update Product: {product ? `${product.productName}` : "Loading..."}
       </h1>
       <form onSubmit={handleProduct} className="form">
-        <div className="form-group">
           <label>*Product Name</label>
           <input
             name="productName"
             value={form.productName}
             onChange={update}
             type="text"
-            className="form-control"
+            className="input"
             placeholder="Product Name"
             required
           />
-        </div>
-        <div className="form-group">
           <label>Image</label>
           <input
             name="image"
             value={form.image}
             onChange={update}
             type="text"
-            className="form-control"
+            className="input"
             placeholder="Image"
           />
-        </div>
-        <div className="form-group">
+        
           <label>*Price</label>
           <input
             name="price"
             value={form.price}
             onChange={update}
             type="float"
-            className="form-control"
+            className="input"
             placeholder="Price"
             required
           />
-        </div>
-        <div className="form-group">
-          <label>Publish</label>
-          <input
-            name="publish"
-            value={form.publish}
-            onChange={update}
-            type="boolean"
-            className="form-control"
-            placeholder="Publish"
-          />
-        </div>
+        
+
+        <label>Publish</label>
+        <input
+          name="publish"
+          value={form.publish}
+          onChange={update}
+          type="boolean"
+          className="input"
+          placeholder="Publish"
+        />
+
         <p>* Indicates a required field.</p>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="button-confirm">
           Update Product
         </button>
       </form>
